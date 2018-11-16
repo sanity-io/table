@@ -1,0 +1,22 @@
+{
+  "name": "sanity-plugin-table",
+  "version": "1.0.0",
+  "description": "Table schema type and input component for Sanity CMS",
+  "main": "index.js",
+  "scripts": {
+    "prepublishOnly": "babel -D -d lib/ src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rdunk/sanity-plugin-table.git"
+  },
+  "author": "Rupert Dunk <rupert@rupertdunk.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0"
+  }
+}

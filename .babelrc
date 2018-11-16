@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ],
+  "presets": [
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "edge": "14"
+        },
+        "modules": "commonjs"
+      }
+    ]
+  ]
+}

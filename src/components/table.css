@@ -1,0 +1,57 @@
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.cell {
+  border: 1px solid rgb(230, 230, 230);
+  padding: 0
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  padding: 0.5em;
+  outline: none;
+}
+
+.input:focus {
+  outline: none;
+  background: rgb(242, 242, 242);
+}
+
+.rowDelete,
+.colDelete {
+  color: rgb(242, 242, 242);
+  padding: 0;
+  text-align: center;
+}
+
+.rowDelete {
+  padding-left: 0.5em;
+}
+
+.colDelete {
+  padding-top: 0.5em;
+}
+
+.rowDelete>span,
+.colDelete>span {
+  cursor: pointer;
+  margin: 0 auto;
+  display: flex;
+  width: 1em;
+  height: 3px;
+  line-height: 1em;
+  background: rgb(242, 242, 242);;
+  align-items: center;
+  justify-content: center;
+}
+
+.rowDelete>span:hover,
+.colDelete>span:hover {
+  background: #ff0000;
+}
+
