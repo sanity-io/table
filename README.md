@@ -2,9 +2,9 @@
 
 [Sanity](https://www.sanity.io/) plugin that implements a `table` schema type and input component.
 
-## Installing
+![example](https://user-images.githubusercontent.com/8467307/48703530-e369be00-ebeb-11e8-8299-14812461aee8.gif)
 
-### via npm
+## Installing
 
 Install using the [Sanity CLI](https://www.sanity.io/docs/cli).
 
@@ -28,6 +28,9 @@ export default {
   ],
 };
 ```
+
+## Similar Packages
+* [sanity-datatable](https://github.com/fredjens/sanity-datatable/) by [fredjens](https://github.com/fredjens/)
 
 ## License
 
