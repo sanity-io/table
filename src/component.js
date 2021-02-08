@@ -7,6 +7,8 @@ import FieldSet from 'part:@sanity/components/fieldsets/default';
 import ButtonGrid from 'part:@sanity/components/buttons/button-grid';
 import Button from 'part:@sanity/components/buttons/default';
 
+import styles from './component.css';
+
 const createPatchFrom = (value) => {
   return PatchEvent.from(set(value));
 };
@@ -55,14 +57,19 @@ export default class TableInput extends React.Component {
   };
 
   removeRow = (index) => {
+    if(!window.confirm('Remove this row?')) {
+      return;
+    }
+
     const { value, onChange } = this.props;
     // Clone the current table data
     const newValue = { ...value };
     // Remove the row via index
     newValue.rows.splice(index, 1);
     // If the last row was removed, clear the table
+    
     if (!newValue.rows.length) {
-      this.clear();
+      return this.clear(true);
     }
     return onChange(createPatchFrom(newValue));
   };
@@ -81,6 +88,10 @@ export default class TableInput extends React.Component {
   };
 
   removeColumn = (index) => {
+    if(!window.confirm('Remove this column?')) {
+      return;
+    }
+
     const { value, onChange } = this.props;
     // Clone the current table data
     const newValue = { ...value };
@@ -90,14 +101,19 @@ export default class TableInput extends React.Component {
     });
     // If the last cell was removed, clear the table
     if (!newValue.rows[0].cells.length) {
-      this.clear();
+      return this.clear(true);
     }
     return onChange(createPatchFrom(newValue));
   };
 
   // Unsets the entire table value
-  clear = () => {
+  clear = (force = false) => {
     const { onChange } = this.props;
+
+    if(!force && !window.confirm('Clear table contents?')) {
+      return;
+    }
+    
     return onChange(PatchEvent.from(unset()));
   };
 
@@ -143,8 +159,10 @@ export default class TableInput extends React.Component {
         isCollapsible={options.collapsible}
         isCollapsed={options.collapsed}
       >
-        {table}
-        {buttons}
+        <div className={styles.container}>
+          {table}
+          {buttons}
+        </div>
       </FieldSet>
     );
   }

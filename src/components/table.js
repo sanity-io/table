@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'part:@sanity/components/buttons/default';
+import CloseIcon from 'part:@sanity/base/close-icon';
 
 import styles from './table.css';
 
@@ -9,14 +11,14 @@ const Table = ({ onFocus, rows, updateCell, removeColumn, removeRow }) => {
   // Button to remove row
   const renderRowRemover = (index) => (
     <td className={styles.rowDelete}>
-      <span onClick={() => removeRow(index)} />
+      <Button title="Remove this row" color="white" icon={CloseIcon} size="small" padding="small" onClick={() => removeRow(index)} />
     </td>
   );
 
   // Button to remove column
   const renderColumnRemover = (index) => (
     <td key={index} className={styles.colDelete}>
-      <span onClick={() => removeColumn(index)} />
+      <Button title="Remove this column" color="white" icon={CloseIcon} size="small" padding="small" onClick={() => removeColumn(index)} />
     </td>
   );
 
