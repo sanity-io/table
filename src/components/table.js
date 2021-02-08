@@ -1,35 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import styles from './table.css';
 
-const Table = ({ rows, updateCell, removeColumn, removeRow }) => {
+const Table = ({ onFocus, rows, updateCell, removeColumn, removeRow }) => {
   if (!rows || !rows.length) return null;
 
   // Button to remove row
-  const renderRowRemover = index => (
+  const renderRowRemover = (index) => (
     <td className={styles.rowDelete}>
       <span onClick={() => removeRow(index)} />
     </td>
   );
 
   // Button to remove column
-  const renderColumnRemover = index => (
+  const renderColumnRemover = (index) => (
     <td key={index} className={styles.colDelete}>
       <span onClick={() => removeColumn(index)} />
     </td>
   );
 
-  const renderColumnRemovers = row => (
+  const renderColumnRemovers = (row) => (
     <tr>{row.cells.map((c, i) => renderColumnRemover(i))}</tr>
   );
 
-  const renderRowCell = rowIndex => (cell, cellIndex) => (
+  const renderRowCell = (rowIndex) => (cell, cellIndex) => (
     <td key={`cell-${cellIndex}`} className={styles.cell}>
       <input
         className={styles.input}
         type="text"
         value={cell}
-        onChange={e => updateCell(e, rowIndex, cellIndex)}
+        onChange={(e) => updateCell(e, rowIndex, cellIndex)}
+        onFocus={() => onFocus([rowIndex, cellIndex])}
       />
     </td>
   );

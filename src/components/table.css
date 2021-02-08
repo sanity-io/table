@@ -19,12 +19,12 @@
 
 .input:focus {
   outline: none;
-  background: rgb(242, 242, 242);
+  border-color: #2276fc;
 }
 
 .rowDelete,
 .colDelete {
-  color: rgb(242, 242, 242);
+  color: #CCC;
   padding: 0;
   text-align: center;
 }
@@ -45,7 +45,8 @@
   width: 1em;
   height: 3px;
   line-height: 1em;
-  background: rgb(242, 242, 242);;
+  background: #CCC;
+  ;
   align-items: center;
   justify-content: center;
 }
@@ -54,4 +55,3 @@
 .colDelete>span:hover {
   background: #ff0000;
 }
-
