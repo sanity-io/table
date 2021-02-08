@@ -39,16 +39,3 @@
 .colDelete {
   padding-top: 0.5em;
 }
-
-.rowDelete>button,
-.colDelete>button {
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  line-height: 1rem;
-  min-height: 1rem;
-  border: none;
-  background: none;
-}
