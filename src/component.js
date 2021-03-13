@@ -1,13 +1,15 @@
-import uuid from '@sanity/uuid';
+import { uuid } from '@sanity/uuid';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from './components/table';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
 import FieldSet from 'part:@sanity/components/fieldsets/default';
-import ButtonCollection from 'part:@sanity/components/buttons/button-collection';
+import ButtonGrid from 'part:@sanity/components/buttons/button-grid';
 import Button from 'part:@sanity/components/buttons/default';
 
-const createPatchFrom = value => {
+import styles from './component.css';
+
+const createPatchFrom = (value) => {
   return PatchEvent.from(set(value));
 };
 
@@ -37,7 +39,7 @@ export default class TableInput extends React.Component {
     return onChange(createPatchFrom(newValue));
   };
 
-  addRow = e => {
+  addRow = (e) => {
     const { value, onChange } = this.props;
     // If we have an empty table, create a new one
     if (!value) return this.initializeTable();
@@ -54,20 +56,25 @@ export default class TableInput extends React.Component {
     return onChange(createPatchFrom(newValue));
   };
 
-  removeRow = index => {
+  removeRow = (index) => {
+    if(!window.confirm('Remove this row?')) {
+      return;
+    }
+
     const { value, onChange } = this.props;
     // Clone the current table data
     const newValue = { ...value };
     // Remove the row via index
     newValue.rows.splice(index, 1);
     // If the last row was removed, clear the table
+    
     if (!newValue.rows.length) {
-      this.clear();
+      return this.clear(true);
     }
     return onChange(createPatchFrom(newValue));
   };
 
-  addColumn = e => {
+  addColumn = (e) => {
     const { value, onChange } = this.props;
     // If we have an empty table, create a new one
     if (!value) return this.initializeTable();
@@ -80,29 +87,40 @@ export default class TableInput extends React.Component {
     return onChange(createPatchFrom(newValue));
   };
 
-  removeColumn = index => {
+  removeColumn = (index) => {
+    if(!window.confirm('Remove this column?')) {
+      return;
+    }
+
     const { value, onChange } = this.props;
     // Clone the current table data
     const newValue = { ...value };
     // For each of the rows, remove the cell by index
-    newValue.rows.forEach(row => {
+    newValue.rows.forEach((row) => {
       row.cells.splice(index, 1);
     });
     // If the last cell was removed, clear the table
     if (!newValue.rows[0].cells.length) {
-      this.clear();
+      return this.clear(true);
     }
     return onChange(createPatchFrom(newValue));
   };
 
   // Unsets the entire table value
-  clear = () => {
+  clear = (force = false) => {
     const { onChange } = this.props;
+
+    if(!force && !window.confirm('Clear table contents?')) {
+      return;
+    }
+    
     return onChange(PatchEvent.from(unset()));
   };
 
+  focus = () => {};
+
   render() {
-    const { type, value } = this.props;
+    const { onFocus, type, value, name } = this.props;
     const { title, description, options } = type;
 
     const table =
@@ -112,11 +130,12 @@ export default class TableInput extends React.Component {
           updateCell={this.updateCell}
           removeColumn={this.removeColumn}
           removeRow={this.removeRow}
+          onFocus={onFocus}
         />
       ) : null;
 
     const buttons = value ? (
-      <ButtonCollection>
+      <ButtonGrid>
         <Button inverted onClick={this.addRow}>
           Add Row
         </Button>
@@ -126,7 +145,7 @@ export default class TableInput extends React.Component {
         <Button inverted color="danger" onClick={this.clear}>
           Clear
         </Button>
-      </ButtonCollection>
+      </ButtonGrid>
     ) : (
       <Button color="primary" onClick={this.initializeTable}>
         New Table
@@ -140,8 +159,10 @@ export default class TableInput extends React.Component {
         isCollapsible={options.collapsible}
         isCollapsed={options.collapsed}
       >
-        {table}
-        {buttons}
+        <div className={styles.container}>
+          {table}
+          {buttons}
+        </div>
       </FieldSet>
     );
   }
