@@ -35,7 +35,9 @@ export default class TableInput extends React.Component {
   initializeTable = () => {
     const { onChange } = this.props;
     // Add a single row with a single empty cell (1 row, 1 column)
-    const newValue = { rows: [{ _type: 'row', _key: uuid(), cells: [''] }] };
+    const newValue = {
+      rows: [{ _type: 'tableRow', _key: uuid(), cells: [''] }],
+    };
     return onChange(createPatchFrom(newValue));
   };
 
@@ -49,7 +51,7 @@ export default class TableInput extends React.Component {
     const columnCount = value.rows[0].cells.length;
     // Add as many cells as we have columns
     newValue.rows.push({
-      _type: 'row',
+      _type: 'tableRow',
       _key: uuid(),
       cells: Array(columnCount).fill(''),
     });
@@ -57,7 +59,7 @@ export default class TableInput extends React.Component {
   };
 
   removeRow = (index) => {
-    if(!window.confirm('Remove this row?')) {
+    if (!window.confirm('Remove this row?')) {
       return;
     }
 
@@ -67,7 +69,7 @@ export default class TableInput extends React.Component {
     // Remove the row via index
     newValue.rows.splice(index, 1);
     // If the last row was removed, clear the table
-    
+
     if (!newValue.rows.length) {
       return this.clear(true);
     }
@@ -88,7 +90,7 @@ export default class TableInput extends React.Component {
   };
 
   removeColumn = (index) => {
-    if(!window.confirm('Remove this column?')) {
+    if (!window.confirm('Remove this column?')) {
       return;
     }
 
@@ -110,10 +112,10 @@ export default class TableInput extends React.Component {
   clear = (force = false) => {
     const { onChange } = this.props;
 
-    if(!force && !window.confirm('Clear table contents?')) {
+    if (!force && !window.confirm('Clear table contents?')) {
       return;
     }
-    
+
     return onChange(PatchEvent.from(unset()));
   };
 

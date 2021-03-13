@@ -1,8 +1,8 @@
 {
   "name": "sanity-plugin-table",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Table schema type and input component for Sanity CMS",
-  "main": "lib/schemaType.js",
+  "main": "lib/schema/table.js",
   "scripts": {
     "prepare": "babel src -d lib -D"
   },
@@ -17,8 +17,6 @@
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
-    "@babel/preset-react": "^7.0.0",
-    "@sanity/uuid": "^3.0.1",
-    "prop-types": "^15.7.2"
+    "@babel/preset-react": "^7.0.0"
   }
 }
