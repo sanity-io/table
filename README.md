@@ -22,9 +22,11 @@ export default {
   title: 'Product',
   type: 'document',
   fields: [
-    name: 'sizeChart',
-    title: 'Size Chart',
-    type: 'table', // Specify table type
+    {
+      name: 'sizeChart',
+      title: 'Size Chart',
+      type: 'table', // Specify table type
+    }
   ],
 };
 ```
