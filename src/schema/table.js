@@ -1,4 +1,4 @@
-import config from 'config:table'
+import config from 'config:table';
 import TableInput from '../component';
 
 export default {

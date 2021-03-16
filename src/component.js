@@ -1,7 +1,7 @@
 import { uuid } from '@sanity/uuid';
 import React from 'react';
 import PropTypes from 'prop-types';
-import config from 'config:table'
+import config from 'config:table';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
 import FieldSet from 'part:@sanity/components/fieldsets/default';
 import ButtonGrid from 'part:@sanity/components/buttons/button-grid';
