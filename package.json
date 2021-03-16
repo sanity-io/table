@@ -4,7 +4,8 @@
   "description": "Table schema type and input component for Sanity CMS",
   "main": "lib/schema/table.js",
   "scripts": {
-    "prepare": "babel src -d lib -D"
+    "build": "babel src -d lib -D",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
