@@ -1,11 +1,12 @@
 import { uuid } from '@sanity/uuid';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from './components/table';
+import config from 'config:table'
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
 import FieldSet from 'part:@sanity/components/fieldsets/default';
 import ButtonGrid from 'part:@sanity/components/buttons/button-grid';
 import Button from 'part:@sanity/components/buttons/default';
+import Table from './components/table';
 
 import styles from './component.css';
 
@@ -36,7 +37,11 @@ export default class TableInput extends React.Component {
     const { onChange } = this.props;
     // Add a single row with a single empty cell (1 row, 1 column)
     const newValue = {
-      rows: [{ _type: 'tableRow', _key: uuid(), cells: [''] }],
+      rows: [{
+        _type: config.rowName,
+        _key: uuid(),
+        cells: [''],
+      }],
     };
     return onChange(createPatchFrom(newValue));
   };
@@ -51,7 +56,7 @@ export default class TableInput extends React.Component {
     const columnCount = value.rows[0].cells.length;
     // Add as many cells as we have columns
     newValue.rows.push({
-      _type: 'tableRow',
+      _type: config.rowName,
       _key: uuid(),
       cells: Array(columnCount).fill(''),
     });

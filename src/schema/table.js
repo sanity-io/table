@@ -1,3 +1,4 @@
+import config from 'config:table'
 import TableInput from '../component';
 
 export default {
@@ -10,7 +11,7 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'tableRow',
+          type: config.rowName,
         },
       ],
     },

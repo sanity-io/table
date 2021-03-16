@@ -1,6 +1,8 @@
+import config from 'config:table'
+
 export default {
   title: 'Table Row',
-  name: 'tableRow',
+  name: config.rowName,
   type: 'object',
   fields: [
     {
