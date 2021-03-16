@@ -11,7 +11,7 @@ export default {
       type: 'array',
       of: [
         {
-          type: config.rowName,
+          type: config.rowType,
         },
       ],
     },

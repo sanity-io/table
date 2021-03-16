@@ -38,7 +38,7 @@ export default class TableInput extends React.Component {
     // Add a single row with a single empty cell (1 row, 1 column)
     const newValue = {
       rows: [{
-        _type: config.rowName,
+        _type: config.rowType,
         _key: uuid(),
         cells: [''],
       }],
@@ -56,7 +56,7 @@ export default class TableInput extends React.Component {
     const columnCount = value.rows[0].cells.length;
     // Add as many cells as we have columns
     newValue.rows.push({
-      _type: config.rowName,
+      _type: config.rowType,
       _key: uuid(),
       cells: Array(columnCount).fill(''),
     });

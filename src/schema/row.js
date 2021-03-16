@@ -2,7 +2,7 @@ import config from 'config:table'
 
 export default {
   title: 'Table Row',
-  name: config.rowName,
+  name: config.rowType,
   type: 'object',
   fields: [
     {
