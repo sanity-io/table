@@ -1,0 +1,119 @@
+import React, { FunctionComponent, useState } from 'react';
+import {
+  Box,
+  Button,
+  Card,
+  Dialog,
+  Inline,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  TextInput,
+} from '@sanity/ui';
+import { AddIcon, WarningOutlineIcon, ControlsIcon } from '@sanity/icons';
+
+const TableMenu: FunctionComponent<{
+  addColumns: (count: number) => any;
+  addRows: (count: number) => any;
+  remove: () => any;
+  placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+}> = (props) => {
+  const [dialog, setDialog] = useState<{
+    type: string;
+    callback: (count: number) => any;
+  } | null>(null);
+
+  const [count, setCount] = useState('');
+
+  const updateCount = (e) => {
+    setCount(e.currentTarget.value);
+  }
+
+  const addRows = () => {
+    setDialog({ type: 'rows', callback: (count) => props.addRows(count) });
+  };
+
+  const addColumns = () => {
+    setDialog({
+      type: 'columns',
+      callback: (count) => props.addColumns(count),
+    });
+  };
+
+  const onConfirm = () => {
+    const parsedCount = parseInt(count, 10);
+    if (parsedCount && parsedCount < 100) {
+      setDialog(null);
+      dialog.callback(parsedCount);
+      setCount(undefined);
+    }
+  };
+
+  return (
+    <React.Fragment>
+      {dialog && (
+        <Dialog
+          header={`Add ${dialog.type}`}
+          id="dialog-add"
+          onClose={() => setDialog(null)}
+          zOffset={1000}
+        >
+          <Card padding={4}>
+            <TextInput
+              style={{ textAlign: 'left' }}
+              fontSize={2}
+              padding={3}
+              type="number"
+              value={count}
+              onChange={updateCount}
+            />
+            <Box marginTop={4}>
+              <Inline space={1} style={{ textAlign: 'right' }}>
+                <Button
+                  text="Cancel"
+                  mode="ghost"
+                  onClick={() => setDialog(null)}
+                />
+                <Button text="Confirm" tone="critical" onClick={onConfirm} />
+              </Inline>
+            </Box>
+          </Card>
+        </Dialog>
+      )}
+      <MenuButton
+        button={
+          <Button icon={ControlsIcon} fontSize={1} padding={2} mode="ghost" />
+        }
+        id="menu-button-example"
+        menu={
+          <Menu>
+            <MenuItem
+              icon={AddIcon}
+              fontSize={1}
+              text="Add Row(s)"
+              onClick={addRows}
+            />
+            <MenuItem
+              icon={AddIcon}
+              fontSize={1}
+              text="Add Column(s)"
+              onClick={addColumns}
+            />
+            <MenuDivider />
+            <MenuItem
+              icon={WarningOutlineIcon}
+              fontSize={1}
+              text="Remove"
+              tone="critical"
+              onClick={props.remove}
+            />
+          </Menu>
+        }
+        placement={props.placement}
+      />
+    </React.Fragment>
+  );
+};
+
+export default TableMenu;

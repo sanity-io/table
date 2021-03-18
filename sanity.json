@@ -6,11 +6,11 @@
   "parts": [
     {
       "implements": "part:@sanity/base/schema-type",
-      "path": "schema/row.js"
+      "path": "schema/row"
     },
     {
       "implements": "part:@sanity/base/schema-type",
-      "path": "schema/table.js"
+      "path": "schema/table"
     }
   ]
 }
