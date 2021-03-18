@@ -1,6 +1,6 @@
 {
   "name": "sanity-plugin-table",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Table schema type and input component for Sanity CMS",
   "main": "lib/TableComponent.js",
   "scripts": {
@@ -19,6 +19,7 @@
   ],
   "license": "MIT",
   "peerDependencies": {
+    "@sanity/uuid": "^3.0.1",
     "@sanity/icons": "^1.0.1",
     "@sanity/ui": "^0.33.10",
     "react": "^17.0.1",

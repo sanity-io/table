@@ -1,5 +1,5 @@
 import React, { useState, FunctionComponent, forwardRef } from 'react';
-import { randomKey } from '@sanity/util/lib/pathUtils';
+import { uuid } from '@sanity/uuid';
 import FormField from 'part:@sanity/components/formfields/default';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
 import config from 'config:table';
@@ -7,20 +7,6 @@ import TableControl from './components/TableControl';
 import TableInput from './components/TableInput';
 import TableMenu from './components/TableMenu';
 import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
-
-interface RootProps {
-  level: number;
-  markers: any[];
-  type: {
-    title: string;
-    description: string;
-    options: Record<string, any>;
-  };
-  value: {
-    rows: TableRow[];
-  };
-  onChange: (...any) => any;
-}
 
 // This probably isn't necessary anymore
 function deepClone<T>(obj: T): T {
@@ -47,12 +33,12 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
       rows: [
         {
           _type: config.rowType,
-          _key: randomKey(),
+          _key: uuid(),
           cells: ['', ''],
         },
         {
           _type: config.rowType,
-          _key: randomKey(),
+          _key: uuid(),
           cells: ['', ''],
         },
       ],
@@ -77,7 +63,7 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
       // Add as many cells as we have columns
       newValue.rows.push({
         _type: config.rowType,
-        _key: randomKey(),
+        _key: uuid(),
         cells: Array(columnCount).fill(''),
       });
     }
