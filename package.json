@@ -2,27 +2,55 @@
   "name": "sanity-plugin-table",
   "version": "2.1.0",
   "description": "Table schema type and input component for Sanity CMS",
-  "main": "lib/schema/table.js",
+  "main": "lib/TableComponent.js",
   "scripts": {
-    "build": "babel src -d lib -D",
-    "prepublishOnly": "npm run build"
+    "build": "sanipack build",
+    "watch": "sanipack build --watch",
+    "prepublishOnly": "sanipack build && sanipack verify"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/rdunk/sanity-plugin-table.git"
   },
   "author": "Rupert Dunk <rupert@rupertdunk.com>",
+  "keywords": [
+    "sanity",
+    "sanity-plugin"
+  ],
   "license": "MIT",
-  "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/preset-env": "^7.1.6",
-    "@babel/preset-react": "^7.0.0"
+  "peerDependencies": {
+    "@sanity/icons": "^1.0.1",
+    "@sanity/ui": "^0.33.10",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
   },
-  "dependencies": {
-    "@sanity/uuid": "^3.0.1",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1"
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "eslint": "7.22.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-config-sanity": "5.1.0",
+    "eslint-plugin-react": "7.22.0",
+    "prettier": "2.2.1",
+    "sanipack": "1.0.8"
+  },
+  "bugs": {
+    "url": "https://github.com/rdunk/sanity-plugin-table/issues"
+  },
+  "homepage": "https://github.com/rdunk/sanity-plugin-table#readme",
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "parser": "sanipack/babel/eslint-parser",
+    "extends": [
+      "sanity",
+      "sanity/react",
+      "prettier",
+      "prettier/react"
+    ]
   }
 }
