@@ -70,6 +70,20 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
     return updateValue(newValue);
   };
 
+  const addRowAt = (index: number = 0) => {
+    const newValue = { ...value };
+    // Calculate the column count from the first row
+    const columnCount = value.rows[0].cells.length;
+
+    newValue.rows.splice(index, 0, {
+      _type: config.rowType,
+      _key: uuid(),
+      cells: Array(columnCount).fill(''),
+    })
+
+    return updateValue(newValue);
+  };
+
   const removeRow = (index: number) => {
     const newValue = deepClone(value);
     newValue.rows.splice(index, 1);
@@ -95,6 +109,16 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
         newValue.rows[i].cells.push('');
       }
     });
+    return updateValue(newValue);
+  };
+
+  const addColumnAt = (index: number) => {
+    const newValue = deepClone(value);
+
+    newValue.rows.forEach((_, i) => {
+      newValue.rows[i].cells.splice(index, 0, '')
+    });
+
     return updateValue(newValue);
   };
 
@@ -152,7 +176,9 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
         {value?.rows?.length && (
           <TableMenu
             addColumns={addColumns}
+            addColumnAt={addColumnAt}
             addRows={addRows}
+            addRowAt={addRowAt}
             remove={confirmRemoveTable}
             placement="left"
           />

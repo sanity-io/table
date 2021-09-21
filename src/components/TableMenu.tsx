@@ -15,7 +15,9 @@ import { AddIcon, WarningOutlineIcon, ControlsIcon } from '@sanity/icons';
 
 const TableMenu: FunctionComponent<{
   addColumns: (count: number) => any;
+  addColumnAt: (index: number) => any;
   addRows: (count: number) => any;
+  addRowAt: (index: number) => any;
   remove: () => any;
   placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
 }> = (props) => {
@@ -34,6 +36,10 @@ const TableMenu: FunctionComponent<{
     setDialog({ type: 'rows', callback: (count) => props.addRows(count) });
   };
 
+  const addRowAt = () => {
+    setDialog({ type: 'rows', callback: (index) => props.addRowAt(index) });
+  };
+
   const addColumns = () => {
     setDialog({
       type: 'columns',
@@ -41,9 +47,14 @@ const TableMenu: FunctionComponent<{
     });
   };
 
+  const addColumnsAt = () => {
+    setDialog({ type: 'columns', callback: (index) => props.addColumnAt(index) });
+  };
+
   const onConfirm = () => {
     const parsedCount = parseInt(count, 10);
-    if (parsedCount && parsedCount < 100) {
+
+    if (parsedCount < 100) {
       setDialog(null);
       dialog.callback(parsedCount);
       setCount(undefined);
@@ -97,8 +108,20 @@ const TableMenu: FunctionComponent<{
             <MenuItem
               icon={AddIcon}
               fontSize={1}
+              text="Add Row At Index"
+              onClick={addRowAt}
+            />
+            <MenuItem
+              icon={AddIcon}
+              fontSize={1}
               text="Add Column(s)"
               onClick={addColumns}
+            />
+            <MenuItem
+              icon={AddIcon}
+              fontSize={1}
+              text="Add Column At Index"
+              onClick={addColumnsAt}
             />
             <MenuDivider />
             <MenuItem
