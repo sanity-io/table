@@ -53,7 +53,7 @@ const TableMenu: FunctionComponent<{
 
   const onConfirm = () => {
     const parsedCount = parseInt(count, 10);
-    console.log(parsedCount +"" + count)
+
     if (parsedCount < 100) {
       setDialog(null);
       dialog.callback(parsedCount);
