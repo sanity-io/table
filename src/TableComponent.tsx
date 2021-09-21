@@ -75,7 +75,6 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
     // Calculate the column count from the first row
     const columnCount = value.rows[0].cells.length;
 
-      // Add as many cells as we have columns
     newValue.rows.splice(index, 0, {
       _type: config.rowType,
       _key: uuid(),
@@ -115,12 +114,9 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
 
   const addColumnAt = (index: number) => {
     const newValue = deepClone(value);
-    // Add a cell to each of the rows
+
     newValue.rows.forEach((_, i) => {
-      // for (let j = 0; j < 1; j++) {
-        // newValue.rows[i].cells[j].push('');
-        newValue.rows[i].cells.splice(index, 0, '')
-      // }
+      newValue.rows[i].cells.splice(index, 0, '')
     });
 
     return updateValue(newValue);
