@@ -7,7 +7,7 @@ import React, {
 import { uuid } from '@sanity/uuid';
 import FormField from 'part:@sanity/components/formfields/default';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
-import config from 'config:table';
+import config from 'config:another-table';
 import TableControl from './components/TableControl';
 import TableInput from './components/TableInput';
 import TableMenu from './components/TableMenu';

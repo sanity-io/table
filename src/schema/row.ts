@@ -1,4 +1,4 @@
-import config from 'config:table';
+import config from 'config:another-table';
 
 export default {
   title: 'Table Row',
