@@ -15,19 +15,21 @@ const TableInput: FunctionComponent<{
   removeColumn: (index: number) => any;
 }> = props => {
   const renderRowCell =
-    (rowIndex: number) => (cell: string, cellIndex: number) => {
-      <td key={`cell-${rowIndex}-${cellIndex}`}>
-        <TextInput
-          fontSize={1}
-          padding={3}
-          value={cell}
-          onChange={e => props.updateCell(e, rowIndex, cellIndex)}
-        />
-      </td>;
-    };
+    (rowIndex: number) => (cell: string, cellIndex: number) =>
+      (
+        <td key={`cell-${rowIndex}-${cellIndex}`}>
+          <TextInput
+            fontSize={1}
+            padding={3}
+            value={cell}
+            onChange={e => props.updateCell(e, rowIndex, cellIndex)}
+          />
+        </td>
+      );
 
   const renderRow = (row: TableRow, rowIndex: number) => {
     const renderCell = renderRowCell(rowIndex);
+
     return (
       <tr key={`row-${rowIndex}`}>
         {row.cells.map(renderCell)}

@@ -7,16 +7,14 @@ import React, {
 import { uuid } from '@sanity/uuid';
 import FormField from 'part:@sanity/components/formfields/default';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
-import config from '../config.dist.json';
+import config from 'config:table';
 import TableControl from './components/TableControl';
 import TableInput from './components/TableInput';
 import TableMenu from './components/TableMenu';
 import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
 
-// This probably isn't necessary anymore
-function deepClone<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
-}
+const deepClone: <T>(data: T) => T =
+  globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
 
 type Props = {
   level: number;

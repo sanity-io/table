@@ -11,6 +11,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
+  ignorePatterns: require('./tsconfig.json').exclude,
   rules: {
     'prefer-const': 'warn',
     'no-console': 'warn',

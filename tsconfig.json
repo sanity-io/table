@@ -5,9 +5,6 @@
     "lib": ["ESNext", "DOM"],
     "resolveJsonModule": true
   },
-  "include": [
-    "./node_modules/@sanity/base/types/**/*.ts",
-    "./**/*.ts",
-    "./**/*.tsx"
-  ]
+  "include": ["src", "./node_modules/@sanity/base/types/**/*.ts"],
+  "exclude": ["lib", "*.js"]
 }
