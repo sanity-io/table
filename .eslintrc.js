@@ -2,9 +2,9 @@ module.exports = {
   root: true,
   extends: [
     'eslint:recommended',
-    'prettier',
     'react-app',
     'plugin:react/recommended',
+    'prettier',
   ],
   plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
@@ -14,8 +14,6 @@ module.exports = {
   rules: {
     'prefer-const': 'warn',
     'no-console': 'warn',
-    '@typescript-eslint/no-extra-semi': 'off',
-    'semi-style': ['error', 'first'],
     'no-debugger': 'warn',
     'no-constant-condition': ['error', { checkLoops: false }],
     'require-await': 'off',

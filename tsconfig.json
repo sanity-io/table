@@ -2,7 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "resolveJsonModule": true
   },
   "include": [

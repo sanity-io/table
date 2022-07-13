@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FormEventHandler, FunctionComponent, useState } from 'react';
 import {
   Box,
   Button,
@@ -28,7 +28,7 @@ const TableMenu: FunctionComponent<{
 
   const [count, setCount] = useState('');
 
-  const updateCount = e => {
+  const updateCount: FormEventHandler<HTMLInputElement> = e => {
     setCount(e.currentTarget.value);
   };
 

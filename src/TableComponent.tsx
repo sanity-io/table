@@ -1,4 +1,9 @@
-import React, { useState, FunctionComponent, forwardRef } from 'react';
+import React, {
+  useState,
+  FunctionComponent,
+  forwardRef,
+  FormEvent,
+} from 'react';
 import { uuid } from '@sanity/uuid';
 import FormField from 'part:@sanity/components/formfields/default';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
@@ -24,10 +29,10 @@ type Props = {
   value: {
     rows: TableRow[];
   };
-  onChange: (...any) => any;
+  onChange: (data: unknown) => unknown;
 };
 
-type TableRow = {
+export type TableRow = {
   _type: string;
   _key: string;
   cells: string[];
@@ -40,7 +45,7 @@ const TableComponent: FunctionComponent<Props> = props => {
     callback: () => any;
   } | null>(null);
 
-  const updateValue = value => {
+  const updateValue = (value: Props['value']) => {
     return onChange(PatchEvent.from(set(value)));
   };
 
@@ -63,7 +68,7 @@ const TableComponent: FunctionComponent<Props> = props => {
         },
       ],
     };
-    return updateValue({ ...(value || {}), ...newValue });
+    return updateValue({ ...(value ?? {}), ...newValue });
   };
 
   const confirmRemoveTable = () => {
@@ -142,7 +147,7 @@ const TableComponent: FunctionComponent<Props> = props => {
     return updateValue(newValue);
   };
 
-  const removeColumn = index => {
+  const removeColumn = (index: number) => {
     const newValue = deepClone(value);
     newValue.rows.forEach(row => {
       row.cells.splice(index, 1);
@@ -151,9 +156,15 @@ const TableComponent: FunctionComponent<Props> = props => {
     setDialog(null);
   };
 
-  const updateCell = (e, rowIndex, cellIndex) => {
+  const updateCell = (
+    e: FormEvent<HTMLInputElement>,
+    rowIndex: number,
+    cellIndex: number
+  ) => {
     const newValue = deepClone(value);
-    newValue.rows[rowIndex].cells[cellIndex] = e.target.value;
+    newValue.rows[rowIndex].cells[cellIndex] = (
+      e.target as HTMLInputElement
+    ).value;
     return updateValue(newValue);
   };
 
@@ -219,6 +230,4 @@ const TableComponent: FunctionComponent<Props> = props => {
   );
 };
 
-export default forwardRef((props: RootProps, ref) => (
-  <TableComponent {...props} />
-));
+export default forwardRef<never, Props>(props => <TableComponent {...props} />);

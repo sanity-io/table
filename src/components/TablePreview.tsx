@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import type { TableRow } from '../TableComponent';
 import styles from './table.css';
 
 const TablePreview: FunctionComponent<{ rows: TableRow[] }> = props => {

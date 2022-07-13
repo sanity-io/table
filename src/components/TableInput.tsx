@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Box, Button, TextInput } from '@sanity/ui';
 import { RemoveIcon } from '@sanity/icons';
+import type { TableRow } from '../TableComponent';
 import styles from './table.css';
 
 const TableInput: FunctionComponent<{
@@ -13,8 +14,8 @@ const TableInput: FunctionComponent<{
   removeRow: (index: number) => any;
   removeColumn: (index: number) => any;
 }> = props => {
-  const renderRowCell = rowIndex => (cell, cellIndex) => {
-    return (
+  const renderRowCell =
+    (rowIndex: number) => (cell: string, cellIndex: number) => {
       <td key={`cell-${rowIndex}-${cellIndex}`}>
         <TextInput
           fontSize={1}
@@ -22,11 +23,10 @@ const TableInput: FunctionComponent<{
           value={cell}
           onChange={e => props.updateCell(e, rowIndex, cellIndex)}
         />
-      </td>
-    );
-  };
+      </td>;
+    };
 
-  const renderRow = (row, rowIndex) => {
+  const renderRow = (row: TableRow, rowIndex: number) => {
     const renderCell = renderRowCell(rowIndex);
     return (
       <tr key={`row-${rowIndex}`}>
