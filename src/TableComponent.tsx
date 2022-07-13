@@ -2,7 +2,7 @@ import React, { useState, FunctionComponent, forwardRef } from 'react';
 import { uuid } from '@sanity/uuid';
 import FormField from 'part:@sanity/components/formfields/default';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
-import config from 'config:table';
+import config from '../config.dist.json';
 import TableControl from './components/TableControl';
 import TableInput from './components/TableInput';
 import TableMenu from './components/TableMenu';
@@ -13,7 +13,27 @@ function deepClone<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 
-const TableComponent: FunctionComponent<RootProps> = props => {
+type Props = {
+  level: number;
+  markers: any[];
+  type: {
+    title: string;
+    description: string;
+    options: Record<string, any>;
+  };
+  value: {
+    rows: TableRow[];
+  };
+  onChange: (...any) => any;
+};
+
+type TableRow = {
+  _type: string;
+  _key: string;
+  cells: string[];
+};
+
+const TableComponent: FunctionComponent<Props> = props => {
   const { type, level, value, markers, onChange } = props;
   const [dialog, setDialog] = useState<{
     type: string;
