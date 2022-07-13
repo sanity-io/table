@@ -56,7 +56,7 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
   };
 
   const addRows = (count: number = 1) => {
-    const newValue = { ...value };
+    const newValue = deepClone(value);
     // Calculate the column count from the first row
     const columnCount = value.rows[0].cells.length;
     for (let i = 0; i < count; i++) {
@@ -71,7 +71,7 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
   };
 
   const addRowAt = (index: number = 0) => {
-    const newValue = { ...value };
+    const newValue = deepClone(value);
     // Calculate the column count from the first row
     const columnCount = value.rows[0].cells.length;
 
