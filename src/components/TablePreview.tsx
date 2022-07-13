@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styles from './table.css';
 
-const TablePreview: FunctionComponent<{ rows: TableRow[] }> = (props) => {
+const TablePreview: FunctionComponent<{ rows: TableRow[] }> = props => {
   return (
     <table className={styles.tablePreview}>
       <tbody>

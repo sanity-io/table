@@ -5,20 +5,22 @@ import styles from './table.css';
 
 const TableInput: FunctionComponent<{
   rows: TableRow[];
-  updateCell: (e: React.FormEvent<HTMLInputElement>
-  , rowIndex: number, cellIndex: number) => any;
+  updateCell: (
+    e: React.FormEvent<HTMLInputElement>,
+    rowIndex: number,
+    cellIndex: number
+  ) => any;
   removeRow: (index: number) => any;
   removeColumn: (index: number) => any;
-}> = (props) => {
-
-  const renderRowCell = (rowIndex) => (cell, cellIndex) => {
+}> = props => {
+  const renderRowCell = rowIndex => (cell, cellIndex) => {
     return (
       <td key={`cell-${rowIndex}-${cellIndex}`}>
         <TextInput
           fontSize={1}
           padding={3}
           value={cell}
-          onChange={(e) => props.updateCell(e, rowIndex, cellIndex)}
+          onChange={e => props.updateCell(e, rowIndex, cellIndex)}
         />
       </td>
     );
@@ -31,13 +33,13 @@ const TableInput: FunctionComponent<{
         {row.cells.map(renderCell)}
         {
           <td key={rowIndex}>
-            <Box marginLeft={1} style={{ textAlign: 'center'}}>
-            <Button
-              icon={RemoveIcon}
-              padding={2}
-              onClick={() => props.removeRow(rowIndex)}
-              mode="bleed"
-            />
+            <Box marginLeft={1} style={{ textAlign: 'center' }}>
+              <Button
+                icon={RemoveIcon}
+                padding={2}
+                onClick={() => props.removeRow(rowIndex)}
+                mode="bleed"
+              />
             </Box>
           </td>
         }
@@ -49,18 +51,20 @@ const TableInput: FunctionComponent<{
     <table className={styles.table}>
       <tbody>
         {props.rows.map(renderRow)}
-        <tr>{(props.rows[0]?.cells|| []).map((_, i) => (
-          <td key={i}>
-            <Box marginTop={1} style={{ textAlign: 'center'}}>
-            <Button
-              icon={RemoveIcon}
-              padding={2}
-              onClick={() => props.removeColumn(i)}
-              mode="bleed"
-            />
-            </Box>
-          </td>
-        ))}</tr>
+        <tr>
+          {(props.rows[0]?.cells || []).map((_, i) => (
+            <td key={i}>
+              <Box marginTop={1} style={{ textAlign: 'center' }}>
+                <Button
+                  icon={RemoveIcon}
+                  padding={2}
+                  onClick={() => props.removeColumn(i)}
+                  mode="bleed"
+                />
+              </Box>
+            </td>
+          ))}
+        </tr>
       </tbody>
     </table>
   );

@@ -13,14 +13,14 @@ function deepClone<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 
-const TableComponent: FunctionComponent<RootProps> = (props) => {
+const TableComponent: FunctionComponent<RootProps> = props => {
   const { type, level, value, markers, onChange } = props;
   const [dialog, setDialog] = useState<{
     type: string;
     callback: () => any;
   } | null>(null);
 
-  const updateValue = (value) => {
+  const updateValue = value => {
     return onChange(PatchEvent.from(set(value)));
   };
 
@@ -43,7 +43,7 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
         },
       ],
     };
-    return updateValue({...(value || {}), ...newValue });
+    return updateValue({ ...(value || {}), ...newValue });
   };
 
   const confirmRemoveTable = () => {
@@ -79,7 +79,7 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
       _type: config.rowType,
       _key: uuid(),
       cells: Array(columnCount).fill(''),
-    })
+    });
 
     return updateValue(newValue);
   };
@@ -116,15 +116,15 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
     const newValue = deepClone(value);
 
     newValue.rows.forEach((_, i) => {
-      newValue.rows[i].cells.splice(index, 0, '')
+      newValue.rows[i].cells.splice(index, 0, '');
     });
 
     return updateValue(newValue);
   };
 
-  const removeColumn = (index) => {
+  const removeColumn = index => {
     const newValue = deepClone(value);
-    newValue.rows.forEach((row) => {
+    newValue.rows.forEach(row => {
       row.cells.splice(index, 1);
     });
     updateValue(newValue);
@@ -184,12 +184,14 @@ const TableComponent: FunctionComponent<RootProps> = (props) => {
           />
         )}
       </Flex>
-      {value?.rows?.length && <TableInput
-        rows={value.rows}
-        removeRow={confirmRemoveRow}
-        removeColumn={confirmRemoveColumn}
-        updateCell={updateCell}
-      />}
+      {value?.rows?.length && (
+        <TableInput
+          rows={value.rows}
+          removeRow={confirmRemoveRow}
+          removeColumn={confirmRemoveColumn}
+          updateCell={updateCell}
+        />
+      )}
       {(!value || !value?.rows?.length) && (
         <TableControl create={createTable} />
       )}
