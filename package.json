@@ -6,7 +6,9 @@
   "scripts": {
     "build": "sanipack build",
     "watch": "sanipack build --watch",
-    "prepublishOnly": "sanipack build && sanipack verify"
+    "prepublishOnly": "sanipack build && sanipack verify",
+    "lint": "eslint . --cache && prettier --check .",
+    "format": "eslint . --fix --cache && prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -19,39 +21,24 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@sanity/uuid": "^3.0.1",
     "@sanity/icons": "^1.0.1",
     "@sanity/ui": "^0.33.10",
+    "@sanity/uuid": "^3.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.3",
-    "eslint": "7.22.0",
-    "eslint-config-prettier": "8.1.0",
-    "eslint-config-sanity": "5.1.0",
-    "eslint-plugin-react": "7.22.0",
-    "prettier": "2.2.1",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.30.0",
+    "prettier": "^2.7.1",
     "sanipack": "1.0.8"
   },
   "bugs": {
     "url": "https://github.com/MathisBullinger/sanity-plugin-another-table/issues"
   },
-  "homepage": "https://github.com/MathisBullinger/sanity-plugin-another-table#readme",
-  "prettier": {
-    "semi": false,
-    "printWidth": 100,
-    "bracketSpacing": false,
-    "singleQuote": true
-  },
-  "eslintConfig": {
-    "parser": "sanipack/babel/eslint-parser",
-    "extends": [
-      "sanity",
-      "sanity/react",
-      "prettier",
-      "prettier/react"
-    ]
-  }
+  "homepage": "https://github.com/MathisBullinger/sanity-plugin-another-table#readme"
 }
