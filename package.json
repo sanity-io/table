@@ -1,6 +1,6 @@
 {
-  "name": "sanity-plugin-table",
-  "version": "2.3.0",
+  "name": "sanity-plugin-another-table",
+  "version": "0.0.1",
   "description": "Table schema type and input component for Sanity CMS",
   "main": "lib/TableComponent.js",
   "scripts": {
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/rdunk/sanity-plugin-table.git"
+    "url": "git+ssh://git@github.com/MathisBullinger/sanity-plugin-another-table.git"
   },
-  "author": "Rupert Dunk <rupert@rupertdunk.com>",
+  "author": "Mathis Bullinger <mathis@bullinger.dev>",
   "keywords": [
     "sanity",
     "sanity-plugin"
@@ -36,9 +36,9 @@
     "sanipack": "1.0.8"
   },
   "bugs": {
-    "url": "https://github.com/rdunk/sanity-plugin-table/issues"
+    "url": "https://github.com/MathisBullinger/sanity-plugin-another-table/issues"
   },
-  "homepage": "https://github.com/rdunk/sanity-plugin-table#readme",
+  "homepage": "https://github.com/MathisBullinger/sanity-plugin-another-table#readme",
   "prettier": {
     "semi": false,
     "printWidth": 100,
