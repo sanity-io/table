@@ -25,8 +25,7 @@
     "@sanity/ui": "^0.37.12",
     "@sanity/uuid": "^3.0.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "styled-components": "^5.2.1"
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.3",
@@ -35,7 +34,7 @@
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.30.0",
     "prettier": "^2.7.1",
-    "sanipack": "1.0.8"
+    "sanipack": "^2.1.0"
   },
   "bugs": {
     "url": "https://github.com/MathisBullinger/sanity-plugin-another-table/issues"
