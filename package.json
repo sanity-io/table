@@ -1,6 +1,6 @@
 {
   "name": "sanity-plugin-another-table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Table schema type and input component for Sanity CMS",
   "main": "lib/TableComponent.js",
   "scripts": {
