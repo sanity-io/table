@@ -33,3 +33,9 @@ export default {
   ],
 };
 ```
+
+## Development
+
+The project can be built using `npm run build`.
+
+To test the plugin in a Sanity project, run `npm run link-watch`, then `sanity-plugin-table` can be tested inside the Sanity Studio. Follow the [directions in plugin-kit](https://github.com/sanity-io/plugin-kit#testing-a-plugin-in-sanity-studio) for more details.
