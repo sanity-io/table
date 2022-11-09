@@ -9,7 +9,7 @@ This is a (double) fork of the Sanity Plugin Table, migrated to [Sanity Studio V
 
 ## Install
 
-Install using the [Sanity CLI](https://www.sanity.io/docs/cli).
+Install using npm
 
 ```bash
 $ npm i sanity-plugin-table@v3
