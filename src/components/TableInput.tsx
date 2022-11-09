@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Box, Button, TextInput } from '@sanity/ui';
 import { RemoveIcon } from '@sanity/icons';
-import type { TableRow } from '../TableComponent';
-import styles from './table.css';
+import type { TableRow } from './TableComponent';
 
 const TableInput: FunctionComponent<{
   rows: TableRow[];
@@ -50,7 +49,7 @@ const TableInput: FunctionComponent<{
   };
 
   return (
-    <table className={styles.table}>
+    <table>
       <tbody>
         {props.rows.map(renderRow)}
         <tr>

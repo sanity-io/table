@@ -1,10 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import type { TableRow } from '../TableComponent';
-import styles from './table.css';
+import type { TableRow } from './TableComponent';
 
 const TablePreview: FunctionComponent<{ rows: TableRow[] }> = props => {
   return (
-    <table className={styles.tablePreview}>
+    <table>
       <tbody>
         {props.rows.map(row => (
           <tr key={row._key}>

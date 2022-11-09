@@ -13,8 +13,9 @@
     "downlevelIteration": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "rootDir": "src"
+    "rootDir": "src",
+    "outDir": "lib"
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["lib", "*.js"]
 }

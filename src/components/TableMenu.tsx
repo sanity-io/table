@@ -9,6 +9,7 @@ import {
   MenuButton,
   MenuDivider,
   MenuItem,
+  Placement,
   TextInput,
 } from '@sanity/ui';
 import { AddIcon, WarningOutlineIcon, ControlsIcon } from '@sanity/icons';
@@ -19,7 +20,7 @@ const TableMenu: FunctionComponent<{
   addRows: (count: number) => any;
   addRowAt: (index: number) => any;
   remove: () => any;
-  placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  placement: Placement;
 }> = props => {
   const [dialog, setDialog] = useState<{
     type: string;

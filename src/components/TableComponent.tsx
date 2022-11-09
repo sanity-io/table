@@ -1,17 +1,19 @@
 import React, {
   useState,
+  useCallback,
   FunctionComponent,
   forwardRef,
   FormEvent,
 } from 'react';
 import { uuid } from '@sanity/uuid';
-import FormField from 'part:@sanity/components/formfields/default';
-import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
-import config from 'config:another-table';
-import TableControl from './components/TableControl';
-import TableInput from './components/TableInput';
-import TableMenu from './components/TableMenu';
+import {set, unset} from 'sanity';
+import TableControl from './TableControl';
+import TableInput from './TableInput';
+import TableMenu from './TableMenu';
 import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
+
+// TODO pass through props
+const rowType = "string";
 
 const deepClone: <T>(data: T) => T =
   globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
@@ -44,23 +46,23 @@ const TableComponent: FunctionComponent<Props> = props => {
   } | null>(null);
 
   const updateValue = (value: Props['value']) => {
-    return onChange(PatchEvent.from(set(value)));
+    return onChange(set(value));
   };
 
   const resetValue = () => {
-    return onChange(PatchEvent.from(unset()));
+    return onChange(unset());
   };
 
   const createTable = () => {
     const newValue = {
       rows: [
         {
-          _type: config.rowType,
+          _type: rowType,
           _key: uuid(),
           cells: ['', ''],
         },
         {
-          _type: config.rowType,
+          _type: rowType,
           _key: uuid(),
           cells: ['', ''],
         },
@@ -85,7 +87,7 @@ const TableComponent: FunctionComponent<Props> = props => {
     for (let i = 0; i < count; i++) {
       // Add as many cells as we have columns
       newValue.rows.push({
-        _type: config.rowType,
+        _type: rowType,
         _key: uuid(),
         cells: Array(columnCount).fill(''),
       });
@@ -99,7 +101,7 @@ const TableComponent: FunctionComponent<Props> = props => {
     const columnCount = value.rows[0].cells.length;
 
     newValue.rows.splice(index, 0, {
-      _type: config.rowType,
+      _type: rowType,
       _key: uuid(),
       cells: Array(columnCount).fill(''),
     });
@@ -195,13 +197,6 @@ const TableComponent: FunctionComponent<Props> = props => {
         </Dialog>
       )}
       <Flex align="flex-start" justify="space-between">
-        <FormField
-          label={type.title}
-          markers={markers}
-          description={type.description}
-          level={level}
-          __unstable_changeIndicator={false}
-        />
         {value?.rows?.length && (
           <TableMenu
             addColumns={addColumns}
