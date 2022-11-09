@@ -1,6 +1,6 @@
 {
   "name": "sanity-plugin-table",
-  "version": "1.0.2",
+  "version": "3.0.0",
   "description": "Table schema type and input component for Sanity CMS",
   "scripts": {
     "prebuild": "plugin-kit verify-package --silent && pkg-utils",
@@ -11,7 +11,12 @@
     "lint": "eslint . --cache && prettier --check .",
     "format": "eslint . --fix --cache && prettier --write ."
   },
-  "files": ["src", "lib", "v2-incompatible.js", "sanity.json"],
+  "files": [
+    "src",
+    "lib",
+    "v2-incompatible.js",
+    "sanity.json"
+  ],
   "source": "./src/index.ts",
   "exports": {
     ".": {
@@ -33,7 +38,10 @@
     "url": "git+ssh://git@github.com/bitfo/sanity-plugin-table.git"
   },
   "author": "Dave Lucia <dave@bitfo.com>",
-  "keywords": ["sanity", "sanity-plugin"],
+  "keywords": [
+    "sanity",
+    "sanity-plugin"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "@sanity/icons": "^1.2.8",

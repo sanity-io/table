@@ -5,15 +5,11 @@ import { AddIcon } from '@sanity/icons';
 const TableControl: FunctionComponent<{
   create: () => any;
 }> = props => {
-  const padding = 3;
-  const fontSize = 1;
-  const space = 1;
-
   return (
-    <Inline space={space}>
+    <Inline space={1}>
       <Button
-        fontSize={fontSize}
-        padding={padding}
+        fontSize={1}
+        padding={3}
         icon={AddIcon}
         text="Create Table"
         tone="primary"

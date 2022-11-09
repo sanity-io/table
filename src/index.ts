@@ -1,9 +1,9 @@
 import { definePlugin } from 'sanity';
 
-import { TableComponent, TablePreview, TableIcon } from './components';
+import { TableComponent, TablePreview } from './components';
 
 interface TableOptions {
-  rowType: string;
+  rowType?: string;
 }
 
 export default definePlugin<TableOptions>(function ({ rowType }) {
@@ -13,7 +13,7 @@ export default definePlugin<TableOptions>(function ({ rowType }) {
       types: [
         {
           title: 'Table Row',
-          name: rowType,
+          name: 'tableRow',
           type: 'object',
           fields: [
             {
@@ -33,7 +33,8 @@ export default definePlugin<TableOptions>(function ({ rowType }) {
               type: 'array',
               of: [
                 {
-                  type: rowType,
+                  // TODO
+                  type: 'tableRow',
                 },
               ],
             },
@@ -45,10 +46,11 @@ export default definePlugin<TableOptions>(function ({ rowType }) {
           preview: {
             select: {
               rows: 'rows',
+              title: 'title',
             },
-            prepare: () => ({
-              title: 'Table',
-              media: TableIcon
+            prepare: ({ title, rows = [] }) => ({
+              title,
+              rows,
             }),
           },
         },

@@ -2,18 +2,17 @@ import React, {
   useState,
   useCallback,
   FunctionComponent,
-  forwardRef,
   FormEvent,
 } from 'react';
 import { uuid } from '@sanity/uuid';
-import {set, unset} from 'sanity';
+import { set, unset } from 'sanity';
 import TableControl from './TableControl';
 import TableInput from './TableInput';
 import TableMenu from './TableMenu';
 import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
 
 // TODO pass through props
-const rowType = "string";
+const rowType = 'string';
 
 const deepClone: <T>(data: T) => T =
   globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
@@ -38,7 +37,7 @@ export type TableRow = {
   cells: string[];
 };
 
-const TableComponent: FunctionComponent<Props> = props => {
+export default props => {
   const { type, level, value, markers, onChange } = props;
   const [dialog, setDialog] = useState<{
     type: string;
@@ -222,5 +221,3 @@ const TableComponent: FunctionComponent<Props> = props => {
     </div>
   );
 };
-
-export default forwardRef<never, Props>(props => <TableComponent {...props} />);
