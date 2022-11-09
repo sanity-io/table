@@ -2,11 +2,7 @@ import { definePlugin } from 'sanity';
 
 import { TableComponent, TablePreview } from './components';
 
-interface TableOptions {
-  rowType?: string;
-}
-
-export default definePlugin<TableOptions>(function ({ rowType }) {
+export default definePlugin(() => {
   return {
     name: 'table',
     schema: {
@@ -33,7 +29,6 @@ export default definePlugin<TableOptions>(function ({ rowType }) {
               type: 'array',
               of: [
                 {
-                  // TODO
                   type: 'tableRow',
                 },
               ],

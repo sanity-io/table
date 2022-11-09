@@ -7,8 +7,7 @@ import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
 
 import { AddIcon } from '@sanity/icons';
 
-// TODO pass through props
-const rowType = 'string';
+const ROW_TYPE = 'tableRow';
 
 const deepClone: <T>(data: T) => T =
   globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
@@ -50,12 +49,12 @@ const TableComponent = (props: Props) => {
     const newValue = {
       rows: [
         {
-          _type: rowType,
+          _type: ROW_TYPE,
           _key: uuid(),
           cells: ['', ''],
         },
         {
-          _type: rowType,
+          _type: ROW_TYPE,
           _key: uuid(),
           cells: ['', ''],
         },
@@ -80,7 +79,7 @@ const TableComponent = (props: Props) => {
     for (let i = 0; i < count; i++) {
       // Add as many cells as we have columns
       newValue.rows.push({
-        _type: rowType,
+        _type: ROW_TYPE,
         _key: uuid(),
         cells: Array(columnCount).fill(''),
       });
@@ -94,7 +93,7 @@ const TableComponent = (props: Props) => {
     const columnCount = value.rows[0].cells.length;
 
     newValue.rows.splice(index, 0, {
-      _type: rowType,
+      _type: ROW_TYPE,
       _key: uuid(),
       cells: Array(columnCount).fill(''),
     });
