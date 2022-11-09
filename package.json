@@ -1,5 +1,5 @@
 {
-  "name": "sanity-plugin-another-table",
+  "name": "sanity-plugin-table",
   "version": "1.0.2",
   "description": "Table schema type and input component for Sanity CMS",
   "scripts": {
@@ -30,9 +30,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/MathisBullinger/sanity-plugin-another-table.git"
+    "url": "git+ssh://git@github.com/bitfo/sanity-plugin-table.git"
   },
-  "author": "Mathis Bullinger <mathis@bullinger.dev>",
+  "author": "Dave Lucia <dave@bitfo.com>",
   "keywords": ["sanity", "sanity-plugin"],
   "license": "MIT",
   "peerDependencies": {
@@ -61,9 +61,9 @@
     "typescript": "^4.8.0"
   },
   "bugs": {
-    "url": "https://github.com/MathisBullinger/sanity-plugin-another-table/issues"
+    "url": "https://github.com/bitfo/sanity-plugin-table/issues"
   },
-  "homepage": "https://github.com/MathisBullinger/sanity-plugin-another-table#readme",
+  "homepage": "https://github.com/bitfo/sanity-plugin-table#readme",
   "dependencies": {
     "@sanity/incompatible-plugin": "^1.0.4",
     "@sanity/ui": "1.0.0-beta.32"

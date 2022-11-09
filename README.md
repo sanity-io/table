@@ -12,7 +12,7 @@ This is a (double) fork of the Sanity Plugin Table, migrated to [Sanity Studio V
 Install using the [Sanity CLI](https://www.sanity.io/docs/cli).
 
 ```bash
-$ npm i sanity-plugin-another-table
+$ npm i sanity-plugin-table@v3
 ```
 
 ## Usage
