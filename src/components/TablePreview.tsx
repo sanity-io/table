@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import type { TableRow } from './TableComponent';
 import { Box, Card, Inline, Grid, Label, Text } from '@sanity/ui';
 import TableIcon from './TableIcon';
@@ -32,10 +32,12 @@ const Table = ({ rows }: { rows: TableRow[] }) => {
   );
 };
 
-const TablePreview: FunctionComponent<{
+interface TablePreviewProps {
   value?: ValueProps;
   schemaType: SchemaProps;
-}> = props => {
+}
+
+const TablePreview = (props: TablePreviewProps) => {
   const { value = { rows: [] }, schemaType } = props;
   const { rows }: ValueProps = value;
 

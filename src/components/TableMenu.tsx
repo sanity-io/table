@@ -1,4 +1,4 @@
-import React, { FormEventHandler, FunctionComponent, useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import {
   Box,
   Button,
@@ -14,14 +14,16 @@ import {
 } from '@sanity/ui';
 import { AddIcon, WarningOutlineIcon, ControlsIcon } from '@sanity/icons';
 
-const TableMenu: FunctionComponent<{
+interface TableMenuProps {
   addColumns: (count: number) => any;
   addColumnAt: (index: number) => any;
   addRows: (count: number) => any;
   addRowAt: (index: number) => any;
   remove: () => any;
   placement: Placement;
-}> = props => {
+}
+
+const TableMenu = (props: TableMenuProps) => {
   const [dialog, setDialog] = useState<{
     type: string;
     callback: (count: number) => any;
