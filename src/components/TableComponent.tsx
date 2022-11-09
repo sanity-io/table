@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  FunctionComponent,
-  FormEvent,
-} from 'react';
+import React, { useState, FormEvent } from 'react';
 import { uuid } from '@sanity/uuid';
 import { set, unset } from 'sanity';
 import TableInput from './TableInput';
@@ -19,8 +14,6 @@ const deepClone: <T>(data: T) => T =
   globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
 
 type Props = {
-  level: number;
-  markers: any[];
   type: {
     title: string;
     description: string;
@@ -38,8 +31,8 @@ export type TableRow = {
   cells: string[];
 };
 
-export default props => {
-  const { type, level, value, markers, onChange } = props;
+const TableComponent = (props: Props) => {
+  const { value, onChange } = props;
   const [dialog, setDialog] = useState<{
     type: string;
     callback: () => any;
@@ -234,3 +227,5 @@ export default props => {
     </div>
   );
 };
+
+export default TableComponent;
