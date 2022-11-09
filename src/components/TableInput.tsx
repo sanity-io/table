@@ -49,7 +49,7 @@ const TableInput: FunctionComponent<{
   };
 
   return (
-    <table>
+    <table style={{ width: '100%' }}>
       <tbody>
         {props.rows.map(renderRow)}
         <tr>

@@ -12,9 +12,9 @@ interface SchemaProps {
   title: string;
 }
 
-const Table = ({ rows }) => {
-  const numRows = rows.length;
-  const numCols = rows[0].cells.length;
+const Table = ({ rows }: { rows: TableRow[] }) => {
+  const numCols = rows.length === 0 ? 0 : rows[0].cells.length;
+
   return (
     <Grid columns={numCols} padding={2}>
       {rows.map(row =>
@@ -24,7 +24,7 @@ const Table = ({ rows }) => {
             padding={2}
             style={{ outline: '1px solid #DFE2E9' }}
           >
-            <Text>{cell}</Text>
+            <Text style={{ textOverflow: 'elipsis' }}>{cell}</Text>
           </Card>
         ))
       )}

@@ -6,10 +6,11 @@ import React, {
 } from 'react';
 import { uuid } from '@sanity/uuid';
 import { set, unset } from 'sanity';
-import TableControl from './TableControl';
 import TableInput from './TableInput';
 import TableMenu from './TableMenu';
 import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
+
+import { AddIcon } from '@sanity/icons';
 
 // TODO pass through props
 const rowType = 'string';
@@ -195,18 +196,20 @@ export default props => {
           </Card>
         </Dialog>
       )}
-      <Flex align="flex-start" justify="space-between">
-        {value?.rows?.length && (
-          <TableMenu
-            addColumns={addColumns}
-            addColumnAt={addColumnAt}
-            addRows={addRows}
-            addRowAt={addRowAt}
-            remove={confirmRemoveTable}
-            placement="left"
-          />
-        )}
-      </Flex>
+      <Box>
+        <Flex align="flex-end" justify="space-between">
+          {value?.rows?.length && (
+            <TableMenu
+              addColumns={addColumns}
+              addColumnAt={addColumnAt}
+              addRows={addRows}
+              addRowAt={addRowAt}
+              remove={confirmRemoveTable}
+              placement="left"
+            />
+          )}
+        </Flex>
+      </Box>
       {value?.rows?.length && (
         <TableInput
           rows={value.rows}
@@ -216,7 +219,17 @@ export default props => {
         />
       )}
       {(!value || !value?.rows?.length) && (
-        <TableControl create={createTable} />
+        <Inline space={1}>
+          <Button
+            fontSize={1}
+            padding={3}
+            icon={AddIcon}
+            text="Create Table"
+            tone="primary"
+            mode="ghost"
+            onClick={createTable}
+          />
+        </Inline>
       )}
     </div>
   );
