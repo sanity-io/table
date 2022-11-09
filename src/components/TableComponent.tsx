@@ -190,7 +190,7 @@ const TableComponent = (props: Props) => {
         </Dialog>
       )}
       <Box>
-        <Flex align="flex-end" justify="space-between">
+        <Flex justify="flex-end">
           {value?.rows?.length && (
             <TableMenu
               addColumns={addColumns}
