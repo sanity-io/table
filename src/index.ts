@@ -2,7 +2,7 @@ import { definePlugin } from 'sanity';
 
 import { TableComponent, TablePreview } from './components';
 
-export default definePlugin(() => {
+export const table = definePlugin(() => {
   return {
     name: 'table',
     schema: {
