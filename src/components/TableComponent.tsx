@@ -1,24 +1,18 @@
-import React, {
-  useState,
-  FunctionComponent,
-  forwardRef,
-  FormEvent,
-} from 'react';
+import React, { useState, FormEvent } from 'react';
 import { uuid } from '@sanity/uuid';
-import FormField from 'part:@sanity/components/formfields/default';
-import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
-import config from 'config:another-table';
-import TableControl from './components/TableControl';
-import TableInput from './components/TableInput';
-import TableMenu from './components/TableMenu';
+import { set, unset } from 'sanity';
+import TableInput from './TableInput';
+import TableMenu from './TableMenu';
 import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
+
+import { AddIcon } from '@sanity/icons';
+
+const ROW_TYPE = 'tableRow';
 
 const deepClone: <T>(data: T) => T =
   globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
 
 type Props = {
-  level: number;
-  markers: any[];
   type: {
     title: string;
     description: string;
@@ -36,31 +30,31 @@ export type TableRow = {
   cells: string[];
 };
 
-const TableComponent: FunctionComponent<Props> = props => {
-  const { type, level, value, markers, onChange } = props;
+const TableComponent = (props: Props) => {
+  const { value, onChange } = props;
   const [dialog, setDialog] = useState<{
     type: string;
     callback: () => any;
   } | null>(null);
 
   const updateValue = (value: Props['value']) => {
-    return onChange(PatchEvent.from(set(value)));
+    return onChange(set(value));
   };
 
   const resetValue = () => {
-    return onChange(PatchEvent.from(unset()));
+    return onChange(unset());
   };
 
   const createTable = () => {
     const newValue = {
       rows: [
         {
-          _type: config.rowType,
+          _type: ROW_TYPE,
           _key: uuid(),
           cells: ['', ''],
         },
         {
-          _type: config.rowType,
+          _type: ROW_TYPE,
           _key: uuid(),
           cells: ['', ''],
         },
@@ -85,7 +79,7 @@ const TableComponent: FunctionComponent<Props> = props => {
     for (let i = 0; i < count; i++) {
       // Add as many cells as we have columns
       newValue.rows.push({
-        _type: config.rowType,
+        _type: ROW_TYPE,
         _key: uuid(),
         cells: Array(columnCount).fill(''),
       });
@@ -99,7 +93,7 @@ const TableComponent: FunctionComponent<Props> = props => {
     const columnCount = value.rows[0].cells.length;
 
     newValue.rows.splice(index, 0, {
-      _type: config.rowType,
+      _type: ROW_TYPE,
       _key: uuid(),
       cells: Array(columnCount).fill(''),
     });
@@ -194,25 +188,20 @@ const TableComponent: FunctionComponent<Props> = props => {
           </Card>
         </Dialog>
       )}
-      <Flex align="flex-start" justify="space-between">
-        <FormField
-          label={type.title}
-          markers={markers}
-          description={type.description}
-          level={level}
-          __unstable_changeIndicator={false}
-        />
-        {value?.rows?.length && (
-          <TableMenu
-            addColumns={addColumns}
-            addColumnAt={addColumnAt}
-            addRows={addRows}
-            addRowAt={addRowAt}
-            remove={confirmRemoveTable}
-            placement="left"
-          />
-        )}
-      </Flex>
+      <Box>
+        <Flex justify="flex-end">
+          {value?.rows?.length && (
+            <TableMenu
+              addColumns={addColumns}
+              addColumnAt={addColumnAt}
+              addRows={addRows}
+              addRowAt={addRowAt}
+              remove={confirmRemoveTable}
+              placement="left"
+            />
+          )}
+        </Flex>
+      </Box>
       {value?.rows?.length && (
         <TableInput
           rows={value.rows}
@@ -222,10 +211,20 @@ const TableComponent: FunctionComponent<Props> = props => {
         />
       )}
       {(!value || !value?.rows?.length) && (
-        <TableControl create={createTable} />
+        <Inline space={1}>
+          <Button
+            fontSize={1}
+            padding={3}
+            icon={AddIcon}
+            text="Create Table"
+            tone="primary"
+            mode="ghost"
+            onClick={createTable}
+          />
+        </Inline>
       )}
     </div>
   );
 };
 
-export default forwardRef<never, Props>(props => <TableComponent {...props} />);
+export default TableComponent;

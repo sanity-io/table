@@ -9,27 +9,55 @@ This is a (double) fork of the Sanity Plugin Table, migrated to [Sanity Studio V
 
 ## Install
 
-Install using the [Sanity CLI](https://www.sanity.io/docs/cli).
+Install using npm
 
 ```bash
-$ npm i sanity-plugin-another-table
+$ npm i sanity-plugin-table@v3
 ```
 
 ## Usage
 
-Simply specify `table` as a field type in your schema.
+Add the plugin to your project configuration. Then use the type in your schemas
 
 ```js
-export default {
-  name: 'product',
-  title: 'Product',
-  type: 'document',
-  fields: [
-    {
-      name: 'sizeChart',
-      title: 'Size Chart',
-      type: 'table',
-    },
+// sanity.config.ts
+
+import { defineConfig } from 'sanity';
+
+import { table } from 'sanity-plugin-table';
+
+export default defineConfig({
+  name: 'default',
+  title: 'My Cool Project',
+  projectId: 'my-project-id',
+  dataset: 'production',
+  plugins: [
+    // Include the table plugin
+    table(),
   ],
-};
+  schema: {
+    types: [
+      {
+        name: 'product',
+        title: 'Product',
+        type: 'document',
+        fields: [
+          {
+            // Include the table as a field
+            // Giving it a semantic title
+            name: 'sizeChart',
+            title: 'Size Chart',
+            type: 'table',
+          },
+        ],
+      },
+    ],
+  },
+});
 ```
+
+## Development
+
+The project can be built using `npm run build`.
+
+To test the plugin in a Sanity project, run `npm run link-watch`, then `sanity-plugin-table` can be tested inside the Sanity Studio. Follow the [directions in plugin-kit](https://github.com/sanity-io/plugin-kit#testing-a-plugin-in-sanity-studio) for more details.

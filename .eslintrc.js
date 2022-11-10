@@ -5,6 +5,7 @@ module.exports = {
     'react-app',
     'plugin:react/recommended',
     'prettier',
+    '@sanity/no-v2-imports',
   ],
   plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',

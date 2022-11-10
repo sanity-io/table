@@ -1,10 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Box, Button, TextInput } from '@sanity/ui';
 import { RemoveIcon } from '@sanity/icons';
-import type { TableRow } from '../TableComponent';
-import styles from './table.css';
+import type { TableRow } from './TableComponent';
 
-const TableInput: FunctionComponent<{
+interface TableInputProps {
   rows: TableRow[];
   updateCell: (
     e: React.FormEvent<HTMLInputElement>,
@@ -13,7 +12,9 @@ const TableInput: FunctionComponent<{
   ) => any;
   removeRow: (index: number) => any;
   removeColumn: (index: number) => any;
-}> = props => {
+}
+
+const TableInput = (props: TableInputProps) => {
   const renderRowCell =
     (rowIndex: number) => (cell: string, cellIndex: number) =>
       (
@@ -50,7 +51,7 @@ const TableInput: FunctionComponent<{
   };
 
   return (
-    <table className={styles.table}>
+    <table style={{ width: '100%' }}>
       <tbody>
         {props.rows.map(renderRow)}
         <tr>
