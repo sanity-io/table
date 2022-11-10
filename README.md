@@ -17,21 +17,43 @@ $ npm i sanity-plugin-table@v3
 
 ## Usage
 
-Simply specify `table` as a field type in your schema.
+Add the plugin to your project configuration. Then use the type in your schemas
 
 ```js
-export default {
-  name: 'product',
-  title: 'Product',
-  type: 'document',
-  fields: [
-    {
-      name: 'sizeChart',
-      title: 'Size Chart',
-      type: 'table',
-    },
+// sanity.config.ts
+
+import { defineConfig } from 'sanity';
+
+import { table } from 'sanity-plugin-table';
+
+export default defineConfig({
+  name: 'default',
+  title: 'My Cool Project',
+  projectId: 'my-project-id',
+  dataset: 'production',
+  plugins: [
+    // Include the table plugin
+    table(),
   ],
-};
+  schema: {
+    types: [
+      {
+        name: 'product',
+        title: 'Product',
+        type: 'document',
+        fields: [
+          {
+            // Include the table as a field
+            // Giving it a semantic title
+            name: 'sizeChart',
+            title: 'Size Chart',
+            type: 'table',
+          },
+        ],
+      },
+    ],
+  },
+});
 ```
 
 ## Development
