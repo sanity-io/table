@@ -1,21 +1,24 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
     "jsx": "preserve",
     "moduleResolution": "node",
     "target": "esnext",
     "module": "esnext",
+    "esModuleInterop": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "strict": true,
     "sourceMap": false,
     "inlineSourceMap": false,
-    "skipLibCheck": true,
-    "isolatedModules": true,
     "downlevelIteration": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "rootDir": "src",
-    "outDir": "lib"
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "lib",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "checkJs": false,
+    "rootDir": "src"
   },
-  "include": ["src/**/*"],
-  "exclude": ["lib", "*.js"]
+  "include": ["src/**/*"]
 }

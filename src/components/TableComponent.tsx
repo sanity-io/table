@@ -1,6 +1,7 @@
+/* eslint-disable consistent-return */
 import React, { useState, FormEvent } from 'react';
 import { uuid } from '@sanity/uuid';
-import { set, unset } from 'sanity';
+import { ObjectInputProps, set, unset } from 'sanity';
 import TableInput from './TableInput';
 import TableMenu from './TableMenu';
 import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
@@ -12,17 +13,12 @@ const ROW_TYPE = 'tableRow';
 const deepClone: <T>(data: T) => T =
   globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
 
-type Props = {
-  type: {
-    title: string;
-    description: string;
-    options: Record<string, any>;
-  };
-  value: {
-    rows: TableRow[];
-  };
-  onChange: (data: unknown) => unknown;
-};
+export interface TableValue {
+  _type: 'table';
+  rows: TableRow[];
+}
+
+export interface TableProps extends ObjectInputProps<TableValue> {}
 
 export type TableRow = {
   _type: string;
@@ -30,15 +26,18 @@ export type TableRow = {
   cells: string[];
 };
 
-const TableComponent = (props: Props) => {
+// TODO refactor deeplone stuff to use proper patches
+// TODO use callback all the things
+
+const TableComponent = (props: TableProps) => {
   const { value, onChange } = props;
   const [dialog, setDialog] = useState<{
     type: string;
     callback: () => any;
   } | null>(null);
 
-  const updateValue = (value: Props['value']) => {
-    return onChange(set(value));
+  const updateValue = (v?: Omit<TableValue, '_type'>) => {
+    return onChange(set(v));
   };
 
   const resetValue = () => {
@@ -46,7 +45,7 @@ const TableComponent = (props: Props) => {
   };
 
   const createTable = () => {
-    const newValue = {
+    const newValue: Omit<TableValue, '_type'> = {
       rows: [
         {
           _type: ROW_TYPE,
@@ -60,7 +59,7 @@ const TableComponent = (props: Props) => {
         },
       ],
     };
-    return updateValue({ ...(value ?? {}), ...newValue });
+    return updateValue({ ...value, ...newValue });
   };
 
   const confirmRemoveTable = () => {
@@ -73,9 +72,12 @@ const TableComponent = (props: Props) => {
   };
 
   const addRows = (count: number = 1) => {
+    if (!value) {
+      return;
+    }
     const newValue = deepClone(value);
     // Calculate the column count from the first row
-    const columnCount = value.rows[0].cells.length;
+    const columnCount = value?.rows[0].cells.length ?? 0;
     for (let i = 0; i < count; i++) {
       // Add as many cells as we have columns
       newValue.rows.push({
@@ -84,10 +86,14 @@ const TableComponent = (props: Props) => {
         cells: Array(columnCount).fill(''),
       });
     }
+    // eslint-disable-next-line consistent-return
     return updateValue(newValue);
   };
 
   const addRowAt = (index: number = 0) => {
+    if (!value) {
+      return;
+    }
     const newValue = deepClone(value);
     // Calculate the column count from the first row
     const columnCount = value.rows[0].cells.length;
@@ -98,10 +104,14 @@ const TableComponent = (props: Props) => {
       cells: Array(columnCount).fill(''),
     });
 
+    // eslint-disable-next-line consistent-return
     return updateValue(newValue);
   };
 
   const removeRow = (index: number) => {
+    if (!value) {
+      return;
+    }
     const newValue = deepClone(value);
     newValue.rows.splice(index, 1);
     updateValue(newValue);
@@ -109,16 +119,25 @@ const TableComponent = (props: Props) => {
   };
 
   const confirmRemoveRow = (index: number) => {
+    if (!value) {
+      return;
+    }
     if (value.rows.length <= 1) return confirmRemoveTable();
     return setDialog({ type: 'row', callback: () => removeRow(index) });
   };
 
   const confirmRemoveColumn = (index: number) => {
+    if (!value) {
+      return;
+    }
     if (value.rows[0].cells.length <= 1) return confirmRemoveTable();
     return setDialog({ type: 'column', callback: () => removeColumn(index) });
   };
 
   const addColumns = (count: number) => {
+    if (!value) {
+      return;
+    }
     const newValue = deepClone(value);
     // Add a cell to each of the rows
     newValue.rows.forEach((_, i) => {
@@ -130,6 +149,9 @@ const TableComponent = (props: Props) => {
   };
 
   const addColumnAt = (index: number) => {
+    if (!value) {
+      return;
+    }
     const newValue = deepClone(value);
 
     newValue.rows.forEach((_, i) => {
@@ -140,6 +162,9 @@ const TableComponent = (props: Props) => {
   };
 
   const removeColumn = (index: number) => {
+    if (!value) {
+      return;
+    }
     const newValue = deepClone(value);
     newValue.rows.forEach(row => {
       row.cells.splice(index, 1);
@@ -153,6 +178,9 @@ const TableComponent = (props: Props) => {
     rowIndex: number,
     cellIndex: number
   ) => {
+    if (!value) {
+      return;
+    }
     const newValue = deepClone(value);
     newValue.rows[rowIndex].cells[cellIndex] = (
       e.target as HTMLInputElement

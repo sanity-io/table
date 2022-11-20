@@ -29,14 +29,14 @@ const TableMenu = (props: TableMenuProps) => {
     callback: (count: number) => any;
   } | null>(null);
 
-  const [count, setCount] = useState('');
+  const [count, setCount] = useState<string | undefined>('');
 
   const updateCount: FormEventHandler<HTMLInputElement> = e => {
     setCount(e.currentTarget.value);
   };
 
   const addRows = () => {
-    setDialog({ type: 'rows', callback: count => props.addRows(count) });
+    setDialog({ type: 'rows', callback: c => props.addRows(c) });
   };
 
   const addRowAt = () => {
@@ -46,7 +46,7 @@ const TableMenu = (props: TableMenuProps) => {
   const addColumns = () => {
     setDialog({
       type: 'columns',
-      callback: count => props.addColumns(count),
+      callback: c => props.addColumns(c),
     });
   };
 
@@ -55,11 +55,11 @@ const TableMenu = (props: TableMenuProps) => {
   };
 
   const onConfirm = () => {
-    const parsedCount = parseInt(count, 10);
+    const parsedCount = parseInt(count ?? '0', 10);
 
     if (parsedCount < 100) {
       setDialog(null);
-      dialog.callback(parsedCount);
+      dialog?.callback(parsedCount);
       setCount(undefined);
     }
   };

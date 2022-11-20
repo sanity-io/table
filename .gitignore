@@ -42,13 +42,22 @@ jspm_packages
 # VS Code settings
 .vscode
 
-# Lockfiles
-yarn.lock
-package-lock.json
+# IntelliJ
+.idea
+*.iml
 
 # Cache
 .cache
-.*cache*
+
+# Yalc
+.yalc
+yalc.lock
+
+##npm package zips
+*.tgz
 
 # Compiled plugin
-/lib
+lib
+
+.eslintcache
+

@@ -1,71 +1,93 @@
 {
-  "name": "@bitfo/sanity-plugin-table",
-  "version": "3.0.0",
-  "description": "Table schema type and input component for Sanity CMS",
-  "scripts": {
-    "prebuild": "plugin-kit verify-package --silent && pkg-utils",
-    "build": "pkg-utils build",
-    "watch": "pkg-utils watch",
-    "link-watch": "plugin-kit link-watch",
-    "prepublishOnly": "npm run build",
-    "lint": "eslint . --cache && prettier --check .",
-    "format": "eslint . --fix --cache && prettier --write ."
+  "name": "@sanity/table",
+  "version": "1.0.0",
+  "description": "Table schema type and input component for Sanity Studio",
+  "keywords": [
+    "sanity",
+    "sanity-plugin"
+  ],
+  "homepage": "https://github.com/sanity-io/table#readme",
+  "bugs": {
+    "url": "https://github.com/sanity-io/table/issues"
   },
-  "files": ["src", "lib", "v2-incompatible.js", "sanity.json"],
-  "source": "./src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sanity-io/table.git"
+  },
+  "license": "MIT",
+  "author": "Dave Lucia <dave@bitfo.com>",
   "exports": {
     ".": {
       "types": "./lib/src/index.d.ts",
       "source": "./src/index.ts",
       "import": "./lib/index.esm.js",
       "require": "./lib/index.js",
-      "default": "./lib/index.js"
-    }
+      "default": "./lib/index.esm.js"
+    },
+    "./package.json": "./package.json"
   },
   "main": "./lib/index.js",
   "module": "./lib/index.esm.js",
+  "source": "./src/index.ts",
   "types": "./lib/src/index.d.ts",
-  "engines": {
-    "node": ">=14"
+  "files": [
+    "src",
+    "lib",
+    "v2-incompatible.js",
+    "sanity.json"
+  ],
+  "scripts": {
+    "prebuild": "npm run clean && plugin-kit verify-package --silent && pkg-utils",
+    "build": "pkg-utils build",
+    "clean": "rimraf lib",
+    "format": "eslint . --fix --cache && prettier --write .",
+    "link-watch": "plugin-kit link-watch",
+    "lint": "eslint src --cache && prettier --check src",
+    "prepare": "husky install",
+    "prepublishOnly": "npm run build",
+    "watch": "pkg-utils watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/bitfo/sanity-plugin-table.git"
-  },
-  "author": "Dave Lucia <dave@bitfo.com>",
-  "keywords": ["sanity", "sanity-plugin"],
-  "license": "MIT",
-  "peerDependencies": {
+  "dependencies": {
     "@sanity/icons": "^1.2.8",
-    "react": "^18",
-    "react-dom": "^18",
-    "sanity": "dev-preview || 3.0.0-rc.0"
+    "@sanity/incompatible-plugin": "^1.0.4",
+    "@sanity/ui": "1.0.0-beta.32"
   },
   "devDependencies": {
-    "@sanity/eslint-config-no-v2-imports": "^0.0.1-studio-v3.3",
-    "@sanity/icons": "^1.2.8",
-    "@sanity/pkg-utils": "^1.17.3",
-    "@sanity/plugin-kit": "^2.1.8",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@sanity/pkg-utils": "^1.18.0",
+    "@sanity/plugin-kit": "^2.1.16",
+    "@sanity/semantic-release-preset": "^2.0.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8.17.0",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-config-sanity": "^6.0.0",
-    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "prettier-plugin-packagejson": "^2.3.0",
     "react": "^18",
     "react-dom": "^18",
-    "sanity": "dev-preview || 3.0.0-rc.0",
-    "typescript": "^4.8.0"
+    "rimraf": "^3.0.2",
+    "sanity": "3.0.0-rc.2",
+    "typescript": "^4.9.3"
   },
-  "bugs": {
-    "url": "https://github.com/bitfo/sanity-plugin-table/issues"
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "sanity": "dev-preview || 3.0.0-rc.2"
   },
-  "homepage": "https://github.com/bitfo/sanity-plugin-table#readme",
-  "dependencies": {
-    "@sanity/incompatible-plugin": "^1.0.4",
-    "@sanity/ui": "1.0.0-beta.32"
+  "engines": {
+    "node": ">=14"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

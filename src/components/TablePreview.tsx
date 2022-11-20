@@ -2,14 +2,11 @@ import React from 'react';
 import type { TableRow } from './TableComponent';
 import { Box, Card, Inline, Grid, Label, Text } from '@sanity/ui';
 import TableIcon from './TableIcon';
+import { PreviewProps } from 'sanity';
 
 interface ValueProps {
   rows?: TableRow[];
   title?: string;
-}
-
-interface SchemaProps {
-  title: string;
 }
 
 const Table = ({ rows }: { rows: TableRow[] }) => {
@@ -32,14 +29,11 @@ const Table = ({ rows }: { rows: TableRow[] }) => {
   );
 };
 
-interface TablePreviewProps {
-  value?: ValueProps;
-  schemaType: SchemaProps;
-}
-
-const TablePreview = (props: TablePreviewProps) => {
+const TablePreview = (props: PreviewProps) => {
   const { value = { rows: [] }, schemaType } = props;
-  const { rows }: ValueProps = value;
+  const { rows = [], title } = (value as ValueProps | undefined) ?? {
+    title: 'Title missing',
+  };
 
   return (
     <>
@@ -51,7 +45,7 @@ const TablePreview = (props: TablePreviewProps) => {
             </Label>
           </Card>
           <Card>
-            <Text>{schemaType.title ?? value?.title}</Text>
+            <Text>{schemaType?.title ?? title}</Text>
           </Card>
         </Inline>
       </Box>
