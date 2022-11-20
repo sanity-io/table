@@ -18,7 +18,7 @@ Big thanks to the original contributors for their work!
 ## Disclaimer
 
 Sometimes a table is just what you need.
-However, before using the Table plugin, consider if there are other ways to model your data that is:
+However, before using the Table plugin, consider if there are other ways to model your data that are:
 * easier to edit and validate
 * easier to query
 
