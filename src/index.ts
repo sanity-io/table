@@ -40,7 +40,7 @@ const tableSchema = defineType({
   components: {
     //TODO remove as any when rc.3 is released
     input: TableComponent as any,
-    preview: TablePreview,
+    preview: TablePreview as any,
   },
   preview: {
     select: {

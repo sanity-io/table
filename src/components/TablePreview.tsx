@@ -29,9 +29,9 @@ const Table = ({ rows }: { rows: TableRow[] }) => {
   );
 };
 
-const TablePreview = (props: PreviewProps) => {
-  const { value = { rows: [] }, schemaType } = props;
-  const { rows = [], title } = (value as ValueProps | undefined) ?? {
+const TablePreview = (props: ValueProps & PreviewProps) => {
+  const { schemaType } = props;
+  const { rows = [], title } = props ?? {
     title: 'Title missing',
   };
 
