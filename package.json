@@ -1,6 +1,6 @@
 {
   "name": "@sanity/table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Table schema type and input component for Sanity Studio",
   "keywords": [
     "sanity",
