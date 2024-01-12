@@ -43,7 +43,6 @@ export const table = definePlugin<TableConfig | undefined>(config => {
       },
     ],
     components: {
-      //TODO remove as any when rc.3 is released
       input: TableComponent as any,
       preview: TablePreview as any,
     },
