@@ -11,18 +11,20 @@ Only the v3 version is maintained by Sanity.io.
 ## Acknowledgements
 
 Big thanks to the original contributors for their work!
-* Original version: [rdunk/sanity-plugin-table](https://github.com/rdunk/sanity-plugin-table).
-* Further improvements in fork [MathisBullinger/sanity-plugin-another-table](https://github.com/MathisBullinger/sanity-plugin-another-table).
-* Initial V3 port: [bitfo/sanity-plugin-table](https://github.com/bitfo/sanity-plugin-table)
+
+- Original version: [rdunk/sanity-plugin-table](https://github.com/rdunk/sanity-plugin-table).
+- Further improvements in fork [MathisBullinger/sanity-plugin-another-table](https://github.com/MathisBullinger/sanity-plugin-another-table).
+- Initial V3 port: [bitfo/sanity-plugin-table](https://github.com/bitfo/sanity-plugin-table)
 
 ## Disclaimer
 
 Sometimes a table is just what you need.
 However, before using the Table plugin, consider if there are other ways to model your data that are:
-* easier to edit and validate
-* easier to query
 
-Approaching your schemas in a more structured manner can often pay dividends down the line.  
+- easier to edit and validate
+- easier to query
+
+Approaching your schemas in a more structured manner can often pay dividends down the line.
 
 ## Install
 
@@ -70,6 +72,22 @@ export default defineConfig({
       },
     ],
   },
+});
+```
+
+## Configuration
+
+You can optionally configure the `_type` used for the row object in the table schema by passing a configuration object when adding the plugin. For most users this is unnecessary, but it can be useful if you are migrating from a legacy table plugin.
+
+```js
+export default defineConfig({
+  // ...
+  plugins: [
+    table({
+      rowType: 'my-custom-row-type',
+    }),
+  ],
+  // ...
 });
 ```
 
