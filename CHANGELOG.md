@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/sanity-io/table/compare/v1.0.1...v1.1.0) (2024-01-12)
+
+### Features
+
+- add configurable row type ([4d19b67](https://github.com/sanity-io/table/commit/4d19b67197a8507aeb6125020020d7467286c7bb))
+
 ## [1.0.1](https://github.com/sanity-io/table/compare/v1.0.0...v1.0.1) (2022-11-25)
 
 ### Bug Fixes
