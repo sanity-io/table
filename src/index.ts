@@ -9,52 +9,56 @@ export type {
 
 export { TableComponent, TablePreview };
 
-const tableRowSchema = defineType({
-  title: 'Table Row',
-  name: 'tableRow',
-  type: 'object',
-  fields: [
-    {
-      name: 'cells',
-      type: 'array',
-      of: [{ type: 'string' }],
-    },
-  ],
-});
+export interface TableConfig {
+  rowType?: string;
+}
 
-const tableSchema = defineType({
-  title: 'Table',
-  name: 'table',
-  type: 'object',
-  fields: [
-    {
-      name: 'rows',
-      type: 'array',
-      of: [
-        {
-          type: tableRowSchema.name,
-        },
-      ],
-    },
-  ],
-  components: {
-    //TODO remove as any when rc.3 is released
-    input: TableComponent as any,
-    preview: TablePreview as any,
-  },
-  preview: {
-    select: {
-      rows: 'rows',
-      title: 'title',
-    },
-    prepare: ({ title, rows = [] }) => ({
-      title,
-      rows,
-    }),
-  },
-});
+export const table = definePlugin<TableConfig | undefined>(config => {
+  const tableRowSchema = defineType({
+    title: 'Table Row',
+    name: config?.rowType || 'tableRow',
+    type: 'object',
+    fields: [
+      {
+        name: 'cells',
+        type: 'array',
+        of: [{ type: 'string' }],
+      },
+    ],
+  });
 
-export const table = definePlugin(() => {
+  const tableSchema = defineType({
+    title: 'Table',
+    name: 'table',
+    type: 'object',
+    fields: [
+      {
+        name: 'rows',
+        type: 'array',
+        of: [
+          {
+            type: tableRowSchema.name,
+          },
+        ],
+      },
+    ],
+    components: {
+      //TODO remove as any when rc.3 is released
+      input: TableComponent as any,
+      preview: TablePreview as any,
+    },
+    preview: {
+      select: {
+        rows: 'rows',
+        title: 'title',
+      },
+      prepare: ({ title, rows = [] }) => ({
+        title,
+        rows,
+      }),
+    },
+  });
+
   return {
     name: 'table',
     schema: {
