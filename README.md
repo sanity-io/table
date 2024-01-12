@@ -77,7 +77,7 @@ export default defineConfig({
 
 ## Configuration
 
-You can optionally configure the `_type` used for the row object in the table schema by passing a configuration object when adding the plugin. For most users this is unnecessary, but it can be useful if you are migrating from a legacy table plugin.
+You can optionally configure the `_type` used for the row object in the table schema by passing a `rowType` when adding the plugin. For most users this is unnecessary, but it can be useful if you are migrating from a legacy table plugin.
 
 ```js
 export default defineConfig({
