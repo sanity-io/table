@@ -8,8 +8,6 @@ import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
 
 import { AddIcon } from '@sanity/icons';
 
-const ROW_TYPE = 'tableRow';
-
 const deepClone: <T>(data: T) => T =
   globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
 
@@ -29,8 +27,8 @@ export type TableRow = {
 // TODO refactor deeplone stuff to use proper patches
 // TODO use callback all the things
 
-const TableComponent = (props: TableProps) => {
-  const { value, onChange } = props;
+const TableComponent = (props: TableProps & { rowType?: string }) => {
+  const { rowType = 'tableRow', value, onChange } = props;
   const [dialog, setDialog] = useState<{
     type: string;
     callback: () => any;
@@ -48,12 +46,12 @@ const TableComponent = (props: TableProps) => {
     const newValue: Omit<TableValue, '_type'> = {
       rows: [
         {
-          _type: ROW_TYPE,
+          _type: rowType,
           _key: uuid(),
           cells: ['', ''],
         },
         {
-          _type: ROW_TYPE,
+          _type: rowType,
           _key: uuid(),
           cells: ['', ''],
         },
@@ -81,7 +79,7 @@ const TableComponent = (props: TableProps) => {
     for (let i = 0; i < count; i++) {
       // Add as many cells as we have columns
       newValue.rows.push({
-        _type: ROW_TYPE,
+        _type: rowType,
         _key: uuid(),
         cells: Array(columnCount).fill(''),
       });
@@ -99,7 +97,7 @@ const TableComponent = (props: TableProps) => {
     const columnCount = value.rows[0].cells.length;
 
     newValue.rows.splice(index, 0, {
-      _type: ROW_TYPE,
+      _type: rowType,
       _key: uuid(),
       cells: Array(columnCount).fill(''),
     });
@@ -254,5 +252,9 @@ const TableComponent = (props: TableProps) => {
     </div>
   );
 };
+
+export function createTableComponent(rowType: string) {
+  return (props: TableProps) => <TableComponent {...props} rowType={rowType} />;
+}
 
 export default TableComponent;

@@ -1,6 +1,7 @@
 import { definePlugin, defineType } from 'sanity';
 
 import { TableComponent, TablePreview } from './components';
+import { createTableComponent } from './components/TableComponent';
 export type {
   TableValue,
   TableProps,
@@ -43,7 +44,7 @@ export const table = definePlugin<TableConfig | undefined>(config => {
       },
     ],
     components: {
-      input: TableComponent as any,
+      input: createTableComponent(tableRowSchema.name) as any,
       preview: TablePreview as any,
     },
     preview: {
