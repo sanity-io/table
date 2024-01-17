@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/sanity-io/table/compare/v1.1.0...v1.1.1) (2024-01-17)
+
+### Bug Fixes
+
+- pass row type to table component ([35d5457](https://github.com/sanity-io/table/commit/35d545728ad97419ee7cc7b0bb674bc5e8844a85))
+
 ## [1.1.0](https://github.com/sanity-io/table/compare/v1.0.1...v1.1.0) (2024-01-12)
 
 ### Features
