@@ -14,7 +14,7 @@ export interface TableConfig {
   rowType?: string;
 }
 
-export const table = definePlugin<TableConfig | undefined>(config => {
+export const table = definePlugin<TableConfig | void>(config => {
   const tableRowSchema = defineType({
     title: 'Table Row',
     name: config?.rowType || 'tableRow',
