@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/sanity-io/table/compare/v1.1.1...v1.1.2) (2024-01-17)
+
+### Bug Fixes
+
+- correct config type ([c911c23](https://github.com/sanity-io/table/commit/c911c23cdafb6c6ec659ab4a081c8d76db4536c5))
+
 ## [1.1.1](https://github.com/sanity-io/table/compare/v1.1.0...v1.1.1) (2024-01-17)
 
 ### Bug Fixes
