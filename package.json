@@ -56,7 +56,7 @@
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
     "@sanity/pkg-utils": "^1.18.0",
-    "@sanity/plugin-kit": "^2.1.16",
+    "@sanity/plugin-kit": "^3.1.12",
     "@sanity/semantic-release-preset": "^2.0.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
