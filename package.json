@@ -48,9 +48,9 @@
     "watch": "pkg-utils watch"
   },
   "dependencies": {
-    "@sanity/icons": "^2.0.0",
-    "@sanity/incompatible-plugin": "^1.0.4",
-    "@sanity/ui": "^1.0.0"
+    "@sanity/icons": "^3.5.3",
+    "@sanity/incompatible-plugin": "^1.0.5",
+    "@sanity/ui": "^2.10.11"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
@@ -76,12 +76,11 @@
     "react": "^18",
     "react-dom": "^18",
     "rimraf": "^3.0.2",
-    "sanity": "^3.0.0",
+    "sanity": "^3.67.1",
     "typescript": "^4.9.3"
   },
   "peerDependencies": {
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18 || ^19",
     "sanity": "^3.0.0"
   },
   "engines": {
