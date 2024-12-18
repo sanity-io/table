@@ -54,8 +54,8 @@
     "@sanity/ui": "^2.10.11"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.2.0",
-    "@commitlint/config-conventional": "^17.2.0",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "@sanity/pkg-utils": "^6.12.0",
     "@sanity/plugin-kit": "^4.0.18",
     "@sanity/semantic-release-preset": "^5.0.0",
@@ -90,5 +90,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "overrides": {
+    "conventional-changelog-conventionalcommits": ">=8.0.0"
   }
 }
