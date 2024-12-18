@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/sanity-io/table/compare/v1.1.2...v1.1.3) (2024-12-18)
+
+### Bug Fixes
+
+- make react 19 compatible ([#49](https://github.com/sanity-io/table/issues/49)) ([a2e5eff](https://github.com/sanity-io/table/commit/a2e5effbab9fff9feb598685f163b8a1cdb25d24))
+
 ## [1.1.2](https://github.com/sanity-io/table/compare/v1.1.1...v1.1.2) (2024-01-17)
 
 ### Bug Fixes
