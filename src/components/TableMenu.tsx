@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useState } from 'react';
+import { AddIcon, ControlsIcon, WarningOutlineIcon } from '@sanity/icons';
 import {
   Box,
   Button,
@@ -12,21 +12,22 @@ import {
   Placement,
   TextInput,
 } from '@sanity/ui';
-import { AddIcon, WarningOutlineIcon, ControlsIcon } from '@sanity/icons';
+import { type FormEventHandler, useState } from 'react';
 
 interface TableMenuProps {
-  addColumns: (count: number) => any;
-  addColumnAt: (index: number) => any;
-  addRows: (count: number) => any;
-  addRowAt: (index: number) => any;
-  remove: () => any;
+  addColumns: (count: number) => void;
+  addColumnAt: (index: number) => void;
+  addRows: (count: number) => void;
+  addRowAt: (index: number) => void;
+  remove: () => void;
   placement: Placement;
 }
 
-const TableMenu = (props: TableMenuProps) => {
+export const TableMenu = (props: TableMenuProps) => {
+  const { remove: handleRemove } = props;
   const [dialog, setDialog] = useState<{
     type: string;
-    callback: (count: number) => any;
+    callback: (count: number) => void;
   } | null>(null);
 
   const [count, setCount] = useState<string | undefined>('');
@@ -65,7 +66,7 @@ const TableMenu = (props: TableMenuProps) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       {dialog && (
         <Dialog
           header={`Add ${dialog.type}`}
@@ -132,14 +133,12 @@ const TableMenu = (props: TableMenuProps) => {
               fontSize={1}
               text="Remove"
               tone="critical"
-              onClick={props.remove}
+              onClick={handleRemove}
             />
           </Menu>
         }
-        placement={props.placement}
+        popover={{ placement: props.placement }}
       />
-    </React.Fragment>
+    </>
   );
 };
-
-export default TableMenu;

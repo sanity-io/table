@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.settings",
+  "include": ["./src"],
+  "exclude": [
+    "./src/**/__fixtures__",
+    "./src/**/__mocks__",
+    "./src/**/*.test.ts",
+    "./src/**/*.test.tsx"
+  ],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./lib",
+    "jsx": "preserve",
+    "module": "preserve",
+    "noEmit": true,
+    "emitDeclarationOnly": true
+  }
+}

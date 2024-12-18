@@ -1,6 +1,4 @@
-import React from 'react';
-
-export default function TableIcon() {
+export function TableIcon() {
   return (
     <svg
       width="1em"

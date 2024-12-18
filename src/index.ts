@@ -1,11 +1,14 @@
 import { definePlugin, defineType } from 'sanity';
 
-import { TableComponent, TablePreview } from './components';
-import { createTableComponent } from './components/TableComponent';
+import {
+  createTableComponent,
+  TableComponent,
+} from './components/TableComponent';
+import { TablePreview } from './components/TablePreview';
 export type {
-  TableValue,
   TableProps,
   TableRow,
+  TableValue,
 } from './components/TableComponent';
 
 export { TableComponent, TablePreview };
@@ -44,8 +47,10 @@ export const table = definePlugin<TableConfig | void>(config => {
       },
     ],
     components: {
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       input: createTableComponent(tableRowSchema.name) as any,
       preview: TablePreview as any,
+      /* eslint-enable @typescript-eslint/no-explicit-any */
     },
     preview: {
       select: {
