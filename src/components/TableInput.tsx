@@ -1,32 +1,36 @@
-import React from 'react';
-import { Box, Button, TextInput } from '@sanity/ui';
 import { RemoveIcon } from '@sanity/icons';
+import { Box, Button, TextInput } from '@sanity/ui';
+import type { FormEvent } from 'react';
+
 import type { TableRow } from './TableComponent';
 
 interface TableInputProps {
   rows: TableRow[];
   updateCell: (
-    e: React.FormEvent<HTMLInputElement>,
+    e: FormEvent<HTMLInputElement>,
     rowIndex: number,
     cellIndex: number
-  ) => any;
-  removeRow: (index: number) => any;
-  removeColumn: (index: number) => any;
+  ) => void;
+  removeRow: (index: number) => void;
+  removeColumn: (index: number) => void;
 }
 
-const TableInput = (props: TableInputProps) => {
-  const renderRowCell =
-    (rowIndex: number) => (cell: string, cellIndex: number) =>
-      (
+export const TableInput = (props: TableInputProps) => {
+  const updateCell = props.updateCell;
+
+  const renderRowCell = (rowIndex: number) =>
+    function RowCell(cell: string, cellIndex: number) {
+      return (
         <td key={`cell-${rowIndex}-${cellIndex}`}>
           <TextInput
             fontSize={1}
             padding={3}
             value={cell}
-            onChange={e => props.updateCell(e, rowIndex, cellIndex)}
+            onChange={e => updateCell(e, rowIndex, cellIndex)}
           />
         </td>
       );
+    };
 
   const renderRow = (row: TableRow, rowIndex: number) => {
     const renderCell = renderRowCell(rowIndex);
@@ -72,5 +76,3 @@ const TableInput = (props: TableInputProps) => {
     </table>
   );
 };
-
-export default TableInput;

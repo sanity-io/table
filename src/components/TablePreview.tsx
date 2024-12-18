@@ -1,8 +1,8 @@
-import React from 'react';
+import { Box, Card, Grid, Inline, Label, Text } from '@sanity/ui';
+import type { PreviewProps } from 'sanity';
+
 import type { TableRow } from './TableComponent';
-import { Box, Card, Inline, Grid, Label, Text } from '@sanity/ui';
-import TableIcon from './TableIcon';
-import { PreviewProps } from 'sanity';
+import { TableIcon } from './TableIcon';
 
 interface ValueProps {
   rows?: TableRow[];
@@ -29,11 +29,8 @@ const Table = ({ rows }: { rows: TableRow[] }) => {
   );
 };
 
-const TablePreview = (props: ValueProps & PreviewProps) => {
-  const { schemaType } = props;
-  const { rows = [], title } = props ?? {
-    title: 'Title missing',
-  };
+export const TablePreview = (props: ValueProps & PreviewProps) => {
+  const { schemaType, rows = [], title = 'Title missing' } = props;
 
   return (
     <>
@@ -59,5 +56,3 @@ const TablePreview = (props: ValueProps & PreviewProps) => {
     </>
   );
 };
-
-export default TablePreview;

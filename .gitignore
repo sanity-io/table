@@ -60,4 +60,4 @@ yalc.lock
 lib
 
 .eslintcache
-
+tsconfig.tsbuildinfo

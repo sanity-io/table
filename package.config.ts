@@ -1,9 +1,8 @@
-import {defineConfig} from '@sanity/pkg-utils'
+import { defineConfig } from '@sanity/pkg-utils';
 
 export default defineConfig({
+  tsconfig: 'tsconfig.lib.json',
   dist: 'lib',
-  minify: true,
-  legacyExports: true,
   // Remove this block to enable strict export validation
   extract: {
     rules: {
@@ -13,4 +12,4 @@ export default defineConfig({
       'ae-missing-release-tag': 'off',
     },
   },
-})
+});

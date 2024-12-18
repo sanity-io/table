@@ -1,12 +1,12 @@
 /* eslint-disable consistent-return */
-import React, { useState, FormEvent } from 'react';
-import { uuid } from '@sanity/uuid';
-import { ObjectInputProps, set, unset } from 'sanity';
-import TableInput from './TableInput';
-import TableMenu from './TableMenu';
-import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
-
 import { AddIcon } from '@sanity/icons';
+import { Box, Button, Card, Dialog, Flex, Inline, Text } from '@sanity/ui';
+import { uuid } from '@sanity/uuid';
+import { type FormEvent, useState } from 'react';
+import { type ObjectInputProps, set, unset } from 'sanity';
+
+import { TableInput } from './TableInput';
+import { TableMenu } from './TableMenu';
 
 const deepClone: <T>(data: T) => T =
   globalThis.structuredClone ?? (data => JSON.parse(JSON.stringify(data)));
@@ -16,7 +16,7 @@ export interface TableValue {
   rows: TableRow[];
 }
 
-export interface TableProps extends ObjectInputProps<TableValue> {}
+export type TableProps = ObjectInputProps<TableValue>;
 
 export type TableRow = {
   _type: string;
@@ -27,11 +27,11 @@ export type TableRow = {
 // TODO refactor deeplone stuff to use proper patches
 // TODO use callback all the things
 
-const TableComponent = (props: TableProps & { rowType?: string }) => {
+export const TableComponent = (props: TableProps & { rowType?: string }) => {
   const { rowType = 'tableRow', value, onChange } = props;
   const [dialog, setDialog] = useState<{
     type: string;
-    callback: () => any;
+    callback: () => void;
   } | null>(null);
 
   const updateValue = (v?: Omit<TableValue, '_type'>) => {
@@ -69,7 +69,7 @@ const TableComponent = (props: TableProps & { rowType?: string }) => {
     setDialog(null);
   };
 
-  const addRows = (count: number = 1) => {
+  const addRows = (count = 1) => {
     if (!value) {
       return;
     }
@@ -88,7 +88,7 @@ const TableComponent = (props: TableProps & { rowType?: string }) => {
     return updateValue(newValue);
   };
 
-  const addRowAt = (index: number = 0) => {
+  const addRowAt = (index = 0) => {
     if (!value) {
       return;
     }
@@ -254,7 +254,7 @@ const TableComponent = (props: TableProps & { rowType?: string }) => {
 };
 
 export function createTableComponent(rowType: string) {
-  return (props: TableProps) => <TableComponent {...props} rowType={rowType} />;
+  return function Table(props: TableProps) {
+    return <TableComponent {...props} rowType={rowType} />;
+  };
 }
-
-export default TableComponent;
