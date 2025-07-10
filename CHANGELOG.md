@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/sanity-io/table/compare/v1.1.3...v1.1.4) (2025-07-10)
+
+### Bug Fixes
+
+- **deps:** allow studio v4 in peer dep ranges + update main.yml ([#53](https://github.com/sanity-io/table/issues/53)) ([877bbc5](https://github.com/sanity-io/table/commit/877bbc54cb1e0a010f6d554175f4c7194f5946e7))
+
 ## [1.1.3](https://github.com/sanity-io/table/compare/v1.1.2...v1.1.3) (2024-12-18)
 
 ### Bug Fixes
