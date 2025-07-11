@@ -1,6 +1,5 @@
 # Sanity Table Plugin
 
-> This is a **Sanity Studio v3** plugin.
 > For the v2 version, please refer to the [v2 repository](https://github.com/rdunk/sanity-plugin-table).
 
 This is a (triple) fork of the Sanity Plugin Table, migrated to [Sanity Studio V3](https://beta.sanity.io/docs/platform/studio/v2-to-v3).
