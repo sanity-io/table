@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/sanity-io/table/compare/v1.1.4...v2.0.0) (2025-09-15)
+
+### ⚠ BREAKING CHANGES
+
+- **deps:** update @sanity/ui to 3.x (#54)
+
+### Features
+
+- **deps:** update @sanity/ui to 3.x ([#54](https://github.com/sanity-io/table/issues/54)) ([8bb3e25](https://github.com/sanity-io/table/commit/8bb3e25b01da99d2e9e6b18dff47ee5240d08c11))
+
 ## [1.1.4](https://github.com/sanity-io/table/compare/v1.1.3...v1.1.4) (2025-07-10)
 
 ### Bug Fixes
