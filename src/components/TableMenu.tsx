@@ -23,14 +23,15 @@ interface TableMenuProps {
   placement: Placement;
 }
 
-export const TableMenu = (props: TableMenuProps) => {
+export const TableMenu = (props: TableMenuProps): JSX.Element => {
   const { remove: handleRemove } = props;
   const [dialog, setDialog] = useState<{
     type: string;
     callback: (count: number) => void;
   } | null>(null);
 
-  const [count, setCount] = useState<string | undefined>('');
+  // Keep `count` always a string so the TextInput is controlled for the component lifetime.
+  const [count, setCount] = useState<string>('');
 
   const updateCount: FormEventHandler<HTMLInputElement> = e => {
     setCount(e.currentTarget.value);
@@ -38,10 +39,12 @@ export const TableMenu = (props: TableMenuProps) => {
 
   const addRows = () => {
     setDialog({ type: 'rows', callback: c => props.addRows(c) });
+    setCount(''); // ensure input starts controlled when dialog opens
   };
 
   const addRowAt = () => {
     setDialog({ type: 'rows', callback: index => props.addRowAt(index) });
+    setCount('');
   };
 
   const addColumns = () => {
@@ -49,19 +52,21 @@ export const TableMenu = (props: TableMenuProps) => {
       type: 'columns',
       callback: c => props.addColumns(c),
     });
+    setCount('');
   };
 
   const addColumnsAt = () => {
     setDialog({ type: 'columns', callback: index => props.addColumnAt(index) });
+    setCount('');
   };
 
   const onConfirm = () => {
-    const parsedCount = parseInt(count ?? '0', 10);
+    const parsedCount = parseInt(count || '0', 10);
 
     if (parsedCount < 100) {
       setDialog(null);
       dialog?.callback(parsedCount);
-      setCount(undefined);
+      setCount('');
     }
   };
 
@@ -71,7 +76,10 @@ export const TableMenu = (props: TableMenuProps) => {
         <Dialog
           header={`Add ${dialog.type}`}
           id="dialog-add"
-          onClose={() => setDialog(null)}
+          onClose={() => {
+            setDialog(null);
+            setCount('');
+          }}
           zOffset={1000}
         >
           <Card padding={4}>
@@ -88,7 +96,10 @@ export const TableMenu = (props: TableMenuProps) => {
                 <Button
                   text="Cancel"
                   mode="ghost"
-                  onClick={() => setDialog(null)}
+                  onClick={() => {
+                    setDialog(null);
+                    setCount('');
+                  }}
                 />
                 <Button text="Confirm" tone="critical" onClick={onConfirm} />
               </Inline>
